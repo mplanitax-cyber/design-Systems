@@ -244,10 +244,10 @@ window.MDS_DATA = {
       ]
     },
     AIA: {
-      name: "AIA — Marker (Display)",
+      name: "AIA — Paperlogy (Display)",
       label: "AIA",
       fonts: [
-        { family: "AIA Marker — Display Bold", weight: 700, role: "H1 · T1 (브랜드 디스플레이)", alt: true },
+        { family: "Paperlogy 7 Bold — Display", weight: 700, role: "H1 · T1 (브랜드 디스플레이)", alt: true, fontFamily: "'Paperlogy', Pretendard, sans-serif" },
         { family: "Pretendard 600 — SemiBold", weight: 600, role: "H2~H4" },
         { family: "Pretendard 400 — Regular", weight: 400, role: "Body" }
       ]

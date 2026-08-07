@@ -126,6 +126,13 @@ http://scripts.sil.org/OFL
 	src: url("../fonts/brand/Paperlogy-SemiBold.woff2") format('woff2');
 }
 
+@font-face {
+	font-family: 'Paperlogy';
+	font-weight: 700;
+	font-display: swap;
+	src: url("../fonts/brand/Paperlogy-Bold.woff2") format('woff2');
+}
+
 
 :root {
   /* Brand */
