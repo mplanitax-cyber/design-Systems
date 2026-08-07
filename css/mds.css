@@ -133,6 +133,20 @@ http://scripts.sil.org/OFL
 	src: url("../fonts/brand/Paperlogy-Bold.woff2") format('woff2');
 }
 
+@font-face {
+	font-family: 'GmarketSans';
+	font-weight: 700;
+	font-display: swap;
+	src: url("../fonts/brand/GmarketSans-Bold.woff2") format('woff2');
+}
+
+@font-face {
+	font-family: 'GmarketSans';
+	font-weight: 500;
+	font-display: swap;
+	src: url("../fonts/brand/GmarketSans-Medium.woff2") format('woff2');
+}
+
 
 :root {
   /* Brand */

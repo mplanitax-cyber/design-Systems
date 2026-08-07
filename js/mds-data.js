@@ -253,10 +253,10 @@ window.MDS_DATA = {
       ]
     },
     HG: {
-      name: "흥국화재 — HungkukSans",
+      name: "흥국화재 — Gmarket Sans",
       label: "흥국화재",
       fonts: [
-        { family: "HungkukSans Bold — Display", weight: 700, role: "H1 · T1 (브랜드 디스플레이)", alt: true },
+        { family: "Gmarket Sans Bold — Display", weight: 700, role: "H1 · T1 (브랜드 디스플레이)", alt: true, fontFamily: "'GmarketSans', Pretendard, sans-serif" },
         { family: "Pretendard 600 — SemiBold", weight: 600, role: "H2~H4" },
         { family: "Pretendard 400 — Regular", weight: 400, role: "Body" }
       ]
