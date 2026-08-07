@@ -19,7 +19,7 @@ function PageOverview({ go }) {
           <div className="hero-stat"><div className="num">14</div><div className="lab">Primitive</div></div>
           <div className="hero-stat"><div className="num">12</div><div className="lab">Type Tokens</div></div>
           <div className="hero-stat"><div className="num">15</div><div className="lab">Components</div></div>
-          <div className="hero-stat"><div className="num">4</div><div className="lab">Brands</div></div>
+          <div className="hero-stat"><div className="num">{Object.keys(window.MDS_DATA.clients).length + 2}</div><div className="lab">Brands</div></div>
         </div>
       </section>
 
@@ -74,8 +74,7 @@ function PageColor({ copy }) {
 
   const showPrimitive = filter === "all" || filter === "primitive";
   const showAlpha = showPrimitive;
-  const showHG = filter === "all" || filter === "client";
-  const showAIA = filter === "all" || filter === "client";
+  const showClient = filter === "all" || filter === "client";
   const showMplanit = filter === "all" || filter === "inhouse";
   const showAILAB = filter === "all" || filter === "inhouse";
 
@@ -83,7 +82,7 @@ function PageColor({ copy }) {
     const t = [];
     if (showPrimitive) t.push({ id: "primitive", label: "Primitive" });
     if (showAlpha) t.push({ id: "alpha", label: "Alpha" });
-    if (showHG || showAIA) t.push({ id: "client", label: "클라이언트" });
+    if (showClient) t.push({ id: "client", label: "클라이언트" });
     if (showMplanit || showAILAB) t.push({ id: "inhouse", label: "자사" });
     return t;
   }, [filter]);
@@ -98,7 +97,7 @@ function PageColor({ copy }) {
         <FilterTabs active={filter} onChange={setFilter}
           items={[
             { value: "all", label: "전체" },
-            { value: "client", label: "클라이언트 (HG, AIA)" },
+            { value: "client", label: `클라이언트 (${Object.keys(D.clients).join(", ")})` },
             { value: "primitive", label: "기본컬러 (Primitives)" },
             { value: "inhouse", label: "자사 (Mplanit, AI-LAB)" }
           ]} />
@@ -147,12 +146,12 @@ function PageColor({ copy }) {
           </Section>
         )}
 
-        {(showHG || showAIA) && (
+        {showClient && (
           <Section id="client" num="03 · CLIENT" title="클라이언트"
             desc="각 클라이언트 브랜드의 시그니처 컬러. Primitive에서 파생되어 제품 내 의미를 부여합니다.">
-            {showHG && (
-              <PaletteBlock name="흥국화재" desc={D.clients.HG.desc} tag="Client · HG">
-                {D.clients.HG.groups.map(g => (
+            {Object.entries(D.clients).map(([key, c]) => (
+              <PaletteBlock key={key} name={c.label || key} desc={c.desc} tag={`Client · ${key}`}>
+                {c.groups.map(g => (
                   <div key={g.label} style={{marginBottom: 16}}>
                     <div style={{fontSize: 11, fontWeight: 700, color: "var(--fg-3)", letterSpacing: ".14em", textTransform: "uppercase", marginBottom: 8, fontFamily: "var(--font-mono)"}}>{g.label}</div>
                     <div className="swatch-grid">
@@ -163,21 +162,7 @@ function PageColor({ copy }) {
                   </div>
                 ))}
               </PaletteBlock>
-            )}
-            {showAIA && (
-              <PaletteBlock name="AIA" desc={D.clients.AIA.desc} tag="Client · AIA">
-                {D.clients.AIA.groups.map(g => (
-                  <div key={g.label} style={{marginBottom: 16}}>
-                    <div style={{fontSize: 11, fontWeight: 700, color: "var(--fg-3)", letterSpacing: ".14em", textTransform: "uppercase", marginBottom: 8, fontFamily: "var(--font-mono)"}}>{g.label}</div>
-                    <div className="swatch-grid">
-                      {g.colors.map(([n, hex]) => (
-                        <Swatch key={n} name={n} hex={hex} onCopy={copy} />
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </PaletteBlock>
-            )}
+            ))}
           </Section>
         )}
 
@@ -237,19 +222,14 @@ function PageTypography({ copy }) {
           lede="Pretendard을 베이스로, 브랜드별 디스플레이 폰트가 H1·T1 등 강조 토큰에 적용됩니다. 12개의 토큰으로 모든 위계를 표현합니다." />
 
         <FilterTabs active={brand} onChange={setBrand}
-          items={[
-            { value: "common", label: "공통" },
-            { value: "AIA", label: "AIA" },
-            { value: "HG", label: "흥국화재" },
-            { value: "WC", label: "웰컴저축은행" }
-          ]} />
+          items={Object.entries(D.typography).map(([k, v]) => ({ value: k, label: v.label || k }))} />
 
         <Section id="font-family" num="01 · FAMILY" title={`Font Family · ${data.name}`}
           desc="브랜드의 보이스를 결정하는 폰트 패밀리. 본문 UI는 Pretendard, 디스플레이는 브랜드별로 분리됩니다.">
           {data.fonts.map(f => (
             <div key={f.family} className="font-card">
               <div>
-                <div className={"sample" + (f.alt ? " alt" : "")} style={{fontWeight: f.weight}}>가나다 AaBb 123</div>
+                <div className={"sample" + (f.alt ? " alt" : "")} style={{fontWeight: f.weight, fontFamily: f.fontFamily}}>가나다 AaBb 123</div>
               </div>
               <div className="meta">
                 <div className="fname">{f.family}</div>
@@ -664,7 +644,22 @@ function PageLogo() {
           </div>
         </Section>
 
-        <Section id="rules" num="03" title="규칙">
+        <Section id="clients" num="03" title="Client Logos"
+          desc="클라이언트 브랜드 로고. 각 브랜드 가이드에 맞는 배경 위에서만 사용하세요.">
+          {Object.entries(window.MDS_DATA.clients).filter(([, c]) => c.logo).map(([key, c]) => (
+            <div key={key} className="logo-card">
+              <div className={"stage" + (c.logo.darkBg ? " dark" : "")}>
+                <img src={c.logo.src} alt={`${c.label} 로고`} style={{maxWidth: "60%", maxHeight: 48, objectFit: "contain"}} />
+              </div>
+              <div className="meta">
+                <span className="name">{c.label} · {key}</span>
+                <span className="desc">{c.logo.note}</span>
+              </div>
+            </div>
+          ))}
+        </Section>
+
+        <Section id="rules" num="04" title="규칙">
           <div style={{display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16}}>
             <div style={{padding: 24, border: "1px solid var(--line-subtle)", borderRadius: 12}}>
               <div style={{fontSize: 11, fontWeight: 800, color: "var(--brand-logo-blue)", letterSpacing: ".14em", fontFamily: "var(--font-mono)", marginBottom: 8}}>DO</div>
@@ -684,8 +679,9 @@ function PageLogo() {
       <ToC items={[
         {id: "primary", label: "Primary"},
         {id: "mono", label: "Tonal & Gradient"},
+        {id: "clients", label: "Client Logos"},
         {id: "rules", label: "규칙"}
-      ]} active={useScrollSpy(["primary","mono","rules"])} />
+      ]} active={useScrollSpy(["primary","mono","clients","rules"])} />
     </div>
   );
 }
