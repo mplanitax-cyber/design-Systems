@@ -24,7 +24,7 @@ function DesignMdMenu() {
 
   return (
     <div className="mdmenu-wrap" ref={wrapRef}>
-      <button type="button" className="mdmenu-trigger" onClick={() => setOpen(o => !o)}>
+      <button type="button" className={"mdmenu-trigger" + (open ? " open" : "")} onClick={() => setOpen(o => !o)}>
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style={{flexShrink:0}}>
           <path d="M13 4C13 3.44772 12.5523 3 12 3C11.4477 3 11 3.44772 11 4V12.5859L8.70711 10.293C8.31658 9.90246 7.68342 9.90246 7.29289 10.293C6.90237 10.6835 6.90237 11.3167 7.29289 11.7072L11.2929 15.7072C11.6834 16.0977 12.3166 16.0977 12.7071 15.7072L16.7071 11.7072C17.0976 11.3167 17.0976 10.6835 16.7071 10.293C16.3166 9.90246 15.6834 9.90246 15.2929 10.293L13 12.5859V4Z" fill="currentColor"/>
           <path d="M3 21C2.44772 21 2 20.5523 2 20V13C2 12.4477 2.44772 12 3 12C3.55229 12 4 12.4477 4 13L4 19L20 19L20 13C20 12.4477 20.4477 12 21 12C21.5523 12 22 12.4477 22 13L22 20C22 20.5523 21.5523 21 21 21L3 21Z" fill="currentColor"/>

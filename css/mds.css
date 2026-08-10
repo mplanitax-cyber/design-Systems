@@ -1027,12 +1027,18 @@ a { color: inherit; text-decoration: none; cursor: pointer; }
 .mdmenu-trigger {
   display: inline-flex; align-items: center; gap: 8px;
   height: 44px; padding: 9px 12px 9px 17px;
-  background: #F5F5F5; border: 1px solid #CED4DA; border-radius: 8px;
-  font-family: inherit; font-size: 14px; font-weight: 700; color: #555;
-  letter-spacing: -0.14px; cursor: pointer; transition: background .15s, border-color .15s;
+  background: var(--fg-1); border: 1px solid var(--fg-1); border-radius: 8px;
+  font-family: inherit; font-size: 14px; font-weight: 700; color: #fff;
+  letter-spacing: -0.14px; cursor: pointer;
+  transition: background .15s, border-color .15s, color .15s;
 }
-.mdmenu-trigger:hover { background: #EEF1F5; border-color: #B8C0C9; }
-.mdmenu-chevron { color: #757575; transition: transform .18s ease; }
+.mdmenu-trigger:hover { background: var(--brand-deep); border-color: var(--brand-deep); }
+.mdmenu-trigger.open {
+  background: #F5F5F5; border-color: #CED4DA; color: #555;
+}
+.mdmenu-trigger.open:hover { background: #EEF1F5; border-color: #B8C0C9; }
+.mdmenu-chevron { color: currentColor; transition: transform .18s ease; }
+.mdmenu-trigger.open .mdmenu-chevron { color: #757575; }
 .mdmenu-chevron.up { transform: rotate(180deg); }
 .mdmenu-list {
   position: absolute; top: calc(100% + 8px); left: 0; z-index: 300;
