@@ -79,6 +79,15 @@ function PageColor({ copy }) {
   const showAILAB = filter === "all" || filter === "inhouse";
 
   const tocItems = useMemo(() => {
+    if (filter === "client") {
+      return Object.entries(D.clients).map(([k, c]) => ({ id: `client-${k}`, label: c.label || k }));
+    }
+    if (filter === "inhouse") {
+      return [
+        { id: "inhouse-mplanit", label: "엠플랜잇" },
+        { id: "inhouse-ailab", label: "AI-LAB" }
+      ];
+    }
     const t = [];
     if (showPrimitive) t.push({ id: "primitive", label: "Primitive" });
     if (showAlpha) t.push({ id: "alpha", label: "Alpha" });
@@ -97,9 +106,9 @@ function PageColor({ copy }) {
         <FilterTabs active={filter} onChange={setFilter}
           items={[
             { value: "all", label: "전체" },
-            { value: "client", label: `클라이언트 (${Object.keys(D.clients).join(", ")})` },
-            { value: "primitive", label: "기본컬러 (Primitives)" },
-            { value: "inhouse", label: "자사 (Mplanit, AI-LAB)" }
+            { value: "client", label: "클라이언트" },
+            { value: "primitive", label: "기본컬러" },
+            { value: "inhouse", label: "자사" }
           ]} />
 
         {showPrimitive && (
@@ -150,7 +159,7 @@ function PageColor({ copy }) {
           <Section id="client" num="03 · CLIENT" title="클라이언트"
             desc="각 클라이언트 브랜드의 시그니처 컬러. Primitive에서 파생되어 제품 내 의미를 부여합니다.">
             {Object.entries(D.clients).map(([key, c]) => (
-              <PaletteBlock key={key} name={c.label || key} desc={c.desc} tag={`Client · ${key}`}>
+              <PaletteBlock key={key} id={`client-${key}`} name={c.label || key} desc={c.desc} tag={`Client · ${key}`}>
                 {c.groups.map(g => (
                   <div key={g.label} style={{marginBottom: 16}}>
                     <div style={{fontSize: 11, fontWeight: 700, color: "var(--fg-3)", letterSpacing: ".14em", textTransform: "uppercase", marginBottom: 8, fontFamily: "var(--font-mono)"}}>{g.label}</div>
@@ -170,7 +179,7 @@ function PageColor({ copy }) {
           <Section id="inhouse" num="04 · IN-HOUSE" title="자사"
             desc="mplanit 본사 및 AI-LAB 등 자사 사이트의 시그니처 팔레트.">
             {showMplanit && (
-              <PaletteBlock name="엠플랜잇" desc={D.inhouse.Mplanit.desc} tag="자사 · mplanit">
+              <PaletteBlock id="inhouse-mplanit" name="엠플랜잇" desc={D.inhouse.Mplanit.desc} tag="자사 · mplanit">
                 {D.inhouse.Mplanit.groups.map(g => (
                   <div key={g.label} style={{marginBottom: 16}}>
                     <div style={{fontSize: 11, fontWeight: 700, color: "var(--fg-3)", letterSpacing: ".14em", textTransform: "uppercase", marginBottom: 8, fontFamily: "var(--font-mono)"}}>{g.label}</div>
@@ -184,7 +193,7 @@ function PageColor({ copy }) {
               </PaletteBlock>
             )}
             {showAILAB && (
-              <PaletteBlock name="AI-LAB" desc={D.inhouse.AILAB.desc} tag="자사 · AI-LAB">
+              <PaletteBlock id="inhouse-ailab" name="AI-LAB" desc={D.inhouse.AILAB.desc} tag="자사 · AI-LAB">
                 <div className="swatch-grid">
                   <div className="swatch" onClick={() => copy("linear-gradient(135deg, #45BBE9, #064EC8)", "AI-LAB Gradient 복사됨")}>
                     <div className="chip" style={{background: "linear-gradient(135deg, #45BBE9, #064EC8)"}}>

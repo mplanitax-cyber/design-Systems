@@ -59,9 +59,9 @@ function Swatch({ name, hex, onCopy, alpha, gradient }) {
 }
 
 /* ── Palette block ───────────────────────────────────── */
-function PaletteBlock({ name, desc, tag, children }) {
+function PaletteBlock({ id, name, desc, tag, children }) {
   return (
-    <div className="palette">
+    <div id={id} className="palette">
       <div className="palette-head">
         <h3>{name} <span style={{fontWeight:400, color:"var(--fg-3)", fontSize:"13px", marginLeft:8}}>{desc}</span></h3>
         <span className="tag">{tag}</span>
