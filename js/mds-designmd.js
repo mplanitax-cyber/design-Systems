@@ -5,6 +5,37 @@ window.MDS_MD_COMMON = "# Mplanit Design System — Spec Document\n\n> **이 문
 (function () {
   function esc(s) { return String(s == null ? "" : s); }
 
+  /* 공통 스펙에서 다른 브랜드 전용 섹션 제거
+     — 헤딩(##/###)에 브랜드명이 포함된 섹션은 해당 브랜드 파일에만 유지 */
+  var BRAND_MARKERS = {
+    Mplanit: /엠플랜잇|Mplanit/,
+    HG: /흥국화재|흥국|\(HG\)/,
+    AIA: /AIA/
+  };
+  function filterCommonForBrand(md, brandKey) {
+    var lines = md.split("\n");
+    var out = [];
+    var skip = false;
+    var skipLevel = 0;
+    for (var i = 0; i < lines.length; i++) {
+      var line = lines[i];
+      var h = line.match(/^(#{2,3}) /);
+      if (h) {
+        var level = h[1].length;
+        if (skip && level <= skipLevel) skip = false;
+        if (!skip) {
+          var owner = null;
+          for (var key in BRAND_MARKERS) {
+            if (BRAND_MARKERS[key].test(line)) { owner = key; break; }
+          }
+          if (owner && owner !== brandKey) { skip = true; skipLevel = level; }
+        }
+      }
+      if (!skip) out.push(line);
+    }
+    return out.join("\n");
+  }
+
   /* 브랜드 컬러/타이포/로고 섹션 md 생성 */
   function brandSection(key) {
     var D = window.MDS_DATA;
@@ -75,7 +106,7 @@ window.MDS_MD_COMMON = "# Mplanit Design System — Spec Document\n\n> **이 문
       });
       return all;
     }
-    return common + brandSection(key);
+    return filterCommonForBrand(common, key) + brandSection(key);
   };
 
   /* 다운로드 실행 */
