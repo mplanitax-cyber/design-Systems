@@ -61,7 +61,7 @@ function PageOverview({ go }) {
       <section className="hero">
         <div className="hero-eyebrow"><span className="pulse"></span>MPLANIT · DESIGN SYSTEM · v0.0.4</div>
         <h1>
-          하나의 토큰<span className="dot">,</span><br/>
+          하나의 토큰,<br/>
           일관된 <span className="accent">경험.</span>
         </h1>
         <p>mplanit과 클라이언트 제품들을 하나의 언어로 묶는 디자인 시스템입니다. 컬러, 타이포그래피, 컴포넌트의 모든 결정은 토큰에서 시작됩니다.</p>
@@ -676,26 +676,38 @@ function PageComponents({ copy }) {
 }
 
 /* ── 공통 아이콘 라이브러리 (designSystem_mplanit 공통 아이콘 세트) ── */
+const ICON_DEFAULT_COLOR = "#7F8A94";
+
 function IconLibrary({ copy }) {
   const data = window.MDS_ICONS || {};
   const cats = Object.keys(data);
   const all = useMemo(() => cats.flatMap(c => data[c].map(ic => ({ cat: c, name: ic.name, svg: ic.svg }))), []);
   const [cat, setCat] = useState("all");
   const [q, setQ] = useState("");
+  const [style, setStyle] = useState("all");
   const [size, setSize] = useState(24);
+  const [color, setColor] = useState(ICON_DEFAULT_COLOR);
 
   const shown = useMemo(() => all.filter(ic => {
     if (cat !== "all" && ic.cat !== cat) return false;
+    if (style !== "all" && !ic.name.endsWith("_" + style)) return false;
     if (q && ic.name.toLowerCase().indexOf(q.toLowerCase().trim()) < 0) return false;
     return true;
-  }), [cat, q]);
+  }), [cat, q, style]);
 
+  /* 미리보기: 색만 치환 (크기는 그리드의 CSS 변수로 제어 - 슬라이더 드래그 시 재렌더 없음) */
   function displaySvg(svg) {
-    return svg
+    return svg.replace(/#7F8A94/g, "currentColor");
+  }
+  /* 복사: 선택한 사이즈·컬러가 반영된 SVG */
+  function copySvg(ic) {
+    const out = ic.svg
       .replace(/width="[0-9]+"/, `width="${size}"`)
       .replace(/height="[0-9]+"/, `height="${size}"`)
-      .replace(/#7F8A94/g, "currentColor");
+      .replace(/#7F8A94/g, color);
+    copy(out, `${ic.name} · ${size}px 복사됨`);
   }
+  function reset() { setSize(24); setColor(ICON_DEFAULT_COLOR); }
 
   if (!cats.length) return null;
   return (
@@ -708,14 +720,36 @@ function IconLibrary({ copy }) {
         <div className="icon-lib-controls">
           <input className="icon-lib-search" value={q} onChange={e => setQ(e.target.value)}
                  placeholder="아이콘 이름 검색..." />
-          <FilterTabs active={size} onChange={setSize}
-            items={[{ value: 24, label: "24px" }, { value: 48, label: "48px" }]} />
+          <FilterTabs active={style} onChange={setStyle}
+            items={[
+              { value: "all", label: "전체" },
+              { value: "line", label: "Line" },
+              { value: "filled", label: "Filled" }
+            ]} />
         </div>
-        <div className="icon-lib-grid">
+        <div className="icon-lib-sizerow">
+          <span className="lab">Size</span>
+          <input type="range" min="16" max="96" step="1" value={size}
+                 onChange={e => setSize(Number(e.target.value))} />
+          <span className="val">{size}px</span>
+          <span className="lab" style={{marginLeft: 16}}>Color</span>
+          <input type="color" value={color} onChange={e => setColor(e.target.value)}
+                 title="아이콘 컬러" />
+          <span className="val">{color.toUpperCase()}</span>
+          {(size !== 24 || color !== ICON_DEFAULT_COLOR) && (
+            <button className="icon-lib-reset" onClick={reset}>초기화</button>
+          )}
+        </div>
+        <div className="icon-lib-grid"
+             style={{
+               "--icon-size": size + "px",
+               color: color,
+               gridTemplateColumns: `repeat(auto-fill, minmax(${Math.max(96, size + 48)}px, 1fr))`
+             }}>
           {shown.map(ic => (
             <div key={ic.cat + "/" + ic.name} className="icon-lib-card"
                  title={ic.name + " - 클릭하여 SVG 복사"}
-                 onClick={() => copy(ic.svg, `${ic.name} SVG 복사됨`)}>
+                 onClick={() => copySvg(ic)}>
               <div className="icon-lib-preview" dangerouslySetInnerHTML={{ __html: displaySvg(ic.svg) }} />
               <span className="nm">{ic.name}</span>
             </div>
