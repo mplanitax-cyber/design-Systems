@@ -220,7 +220,7 @@ function PageColor({ copy }) {
               <PaletteBlock key={key} id={`client-${key}`} name={c.label || key} desc={c.desc} tag={`Client · ${key}`}>
                 {c.groups.map(g => (
                   <div key={g.label} style={{marginBottom: 16}}>
-                    <div style={{fontSize: 11, fontWeight: 700, color: "var(--fg-3)", letterSpacing: ".14em", textTransform: "uppercase", marginBottom: 8, fontFamily: "var(--font-mono)"}}>{g.label}</div>
+                    <div style={{fontSize: 11, fontWeight: 700, color: "var(--fg-3)", letterSpacing: ".14em", textTransform: "uppercase", marginBottom: 8}}>{g.label}</div>
                     <div className="swatch-grid">
                       {g.colors.map(([n, hex]) => (
                         <Swatch key={n} name={n} hex={hex} onCopy={copy} />
@@ -240,7 +240,7 @@ function PageColor({ copy }) {
               <PaletteBlock id="inhouse-mplanit" name="엠플랜잇" desc={D.inhouse.Mplanit.desc} tag="자사 · mplanit">
                 {D.inhouse.Mplanit.groups.map(g => (
                   <div key={g.label} style={{marginBottom: 16}}>
-                    <div style={{fontSize: 11, fontWeight: 700, color: "var(--fg-3)", letterSpacing: ".14em", textTransform: "uppercase", marginBottom: 8, fontFamily: "var(--font-mono)"}}>{g.label}</div>
+                    <div style={{fontSize: 11, fontWeight: 700, color: "var(--fg-3)", letterSpacing: ".14em", textTransform: "uppercase", marginBottom: 8}}>{g.label}</div>
                     <div className="swatch-grid">
                       {g.colors.map(([n, hex]) => (
                         <Swatch key={n} name={n} hex={hex} onCopy={copy} />
@@ -273,7 +273,7 @@ function PageColor({ copy }) {
                 <PaletteBlock key={key} id={`inhouse-${key}`} name={c.label || key} desc={c.desc} tag={`자사 · ${key}`}>
                   {c.groups.map(g => (
                     <div key={g.label} style={{marginBottom: 16}}>
-                      <div style={{fontSize: 11, fontWeight: 700, color: "var(--fg-3)", letterSpacing: ".14em", textTransform: "uppercase", marginBottom: 8, fontFamily: "var(--font-mono)"}}>{g.label}</div>
+                      <div style={{fontSize: 11, fontWeight: 700, color: "var(--fg-3)", letterSpacing: ".14em", textTransform: "uppercase", marginBottom: 8}}>{g.label}</div>
                       <div className="swatch-grid">
                         {g.colors.map(([n, hex]) => (
                           <Swatch key={n} name={n} hex={hex} onCopy={copy} />
@@ -351,7 +351,7 @@ function PageTypography({ copy }) {
         <Section id="usage" num="03 · USAGE" title="사용 예시"
           desc="실제 화면에서 토큰들이 어떤 위계를 만드는지.">
           <div style={{padding: "40px 32px", border: "1px solid var(--line-subtle)", borderRadius: 12, background: "white"}}>
-            <div style={{fontSize: 11, fontWeight: 800, color: "var(--brand-logo-blue)", letterSpacing: ".14em", marginBottom: 12, fontFamily: "var(--font-mono)"}}>
+            <div style={{fontSize: 11, fontWeight: 800, color: "var(--brand-logo-blue)", letterSpacing: ".14em", marginBottom: 12}}>
               EYEBROW · MPLANIT
             </div>
             <div style={{fontSize: 32, fontWeight: 700, lineHeight: 1.125, letterSpacing: "-0.5px", marginBottom: 12}}>
@@ -800,13 +800,13 @@ function PageLogo() {
         <Section id="rules" num="04" title="규칙">
           <div style={{display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16}}>
             <div style={{padding: 24, border: "1px solid var(--line-subtle)", borderRadius: 12}}>
-              <div style={{fontSize: 11, fontWeight: 800, color: "var(--brand-logo-blue)", letterSpacing: ".14em", fontFamily: "var(--font-mono)", marginBottom: 8}}>DO</div>
+              <div style={{fontSize: 11, fontWeight: 800, color: "var(--brand-logo-blue)", letterSpacing: ".14em", marginBottom: 8}}>DO</div>
               <p style={{fontSize: 14, color: "var(--fg-2)", margin: 0, lineHeight: 1.5}}>
                 여백을 'P' 글자 높이만큼 확보하세요. 다크 배경에서는 반전 버전을 사용하세요.
               </p>
             </div>
             <div style={{padding: 24, border: "1px solid var(--line-subtle)", borderRadius: 12}}>
-              <div style={{fontSize: 11, fontWeight: 800, color: "var(--fg-error)", letterSpacing: ".14em", fontFamily: "var(--font-mono)", marginBottom: 8}}>DON'T</div>
+              <div style={{fontSize: 11, fontWeight: 800, color: "var(--fg-error)", letterSpacing: ".14em", marginBottom: 8}}>DON'T</div>
               <p style={{fontSize: 14, color: "var(--fg-2)", margin: 0, lineHeight: 1.5}}>
                 로고를 늘리거나 회전시키지 마세요. 색상을 임의로 변경하지 마세요.
               </p>
