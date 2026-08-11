@@ -844,7 +844,14 @@ a { color: inherit; text-decoration: none; cursor: pointer; }
 
 /* Icon library (공통 아이콘) */
 .icon-lib { width: 100%; }
-.icon-lib .filter-tabs { flex-wrap: wrap; margin-bottom: 12px; }
+/* 카테고리 탭: 한 줄 고정 + 마우스 드래그 가로 스크롤 (스크롤바 숨김) */
+.icon-lib > .filter-tabs {
+  display: flex; flex-wrap: nowrap; max-width: 100%;
+  overflow-x: auto; scrollbar-width: none;
+  margin-bottom: 12px; cursor: grab; user-select: none;
+}
+.icon-lib > .filter-tabs::-webkit-scrollbar { display: none; }
+.icon-lib > .filter-tabs .filter-tab { flex: 0 0 auto; white-space: nowrap; }
 .icon-lib-controls .filter-tabs { margin-bottom: 0; }
 .icon-lib-controls {
   display: flex; align-items: center; gap: 12px; flex-wrap: wrap;

@@ -91,8 +91,39 @@ function PaletteBlock({ id, name, desc, tag, children }) {
 
 /* ── Filter tabs ─────────────────────────────────────── */
 function FilterTabs({ items, active, onChange }) {
+  const ref = useRef(null);
+  const drag = useRef(null);
+
+  /* 탭이 컨테이너를 넘칠 때만 마우스 드래그로 가로 스크롤 */
+  function onPointerDown(e) {
+    const el = ref.current;
+    if (!el || el.scrollWidth <= el.clientWidth) return;
+    drag.current = { x: e.clientX, left: el.scrollLeft, moved: false };
+  }
+  function onPointerMove(e) {
+    const d = drag.current, el = ref.current;
+    if (!d || !el) return;
+    const dx = e.clientX - d.x;
+    if (!d.moved && Math.abs(dx) > 4) {
+      d.moved = true;
+      if (el.setPointerCapture) el.setPointerCapture(e.pointerId);
+    }
+    if (d.moved) el.scrollLeft = d.left - dx;
+  }
+  function endDrag() {
+    const d = drag.current;
+    // 드래그였다면 click 이벤트가 지나갈 때까지 moved 플래그 유지 (탭 오클릭 방지)
+    if (d && d.moved) setTimeout(() => { drag.current = null; }, 0);
+    else drag.current = null;
+  }
+
   return (
-    <div className="filter-tabs">
+    <div className="filter-tabs" ref={ref}
+      onPointerDown={onPointerDown} onPointerMove={onPointerMove}
+      onPointerUp={endDrag} onPointerLeave={endDrag}
+      onClickCapture={e => {
+        if (drag.current && drag.current.moved) { e.preventDefault(); e.stopPropagation(); }
+      }}>
       {items.map(it => (
         <button key={it.value}
           className={"filter-tab" + (active === it.value ? " active" : "")}
