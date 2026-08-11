@@ -73,7 +73,7 @@ function PageOverview({ go }) {
           <div className="hero-stat"><div className="num">14</div><div className="lab">Primitive</div></div>
           <div className="hero-stat"><div className="num">12</div><div className="lab">Type Tokens</div></div>
           <div className="hero-stat"><div className="num">15</div><div className="lab">Components</div></div>
-          <div className="hero-stat"><div className="num">{Object.keys(window.MDS_DATA.clients).length + 2}</div><div className="lab">Brands</div></div>
+          <div className="hero-stat"><div className="num">{Object.keys(window.MDS_DATA.clients).length + Object.keys(window.MDS_DATA.inhouse).length}</div><div className="lab">Brands</div></div>
         </div>
       </section>
 
@@ -139,7 +139,10 @@ function PageColor({ copy }) {
     if (filter === "inhouse") {
       return [
         { id: "inhouse-mplanit", label: "엠플랜잇" },
-        { id: "inhouse-ailab", label: "AI-LAB" }
+        { id: "inhouse-ailab", label: "AI-LAB" },
+        ...Object.entries(D.inhouse)
+          .filter(([k]) => k !== "Mplanit" && k !== "AILAB")
+          .map(([k, c]) => ({ id: `inhouse-${k}`, label: c.label || k }))
       ];
     }
     const t = [];
@@ -263,6 +266,22 @@ function PageColor({ copy }) {
                 </div>
               </PaletteBlock>
             )}
+            {(showMplanit || showAILAB) && Object.entries(D.inhouse)
+              .filter(([k]) => k !== "Mplanit" && k !== "AILAB")
+              .map(([key, c]) => (
+                <PaletteBlock key={key} id={`inhouse-${key}`} name={c.label || key} desc={c.desc} tag={`자사 · ${key}`}>
+                  {c.groups.map(g => (
+                    <div key={g.label} style={{marginBottom: 16}}>
+                      <div style={{fontSize: 11, fontWeight: 700, color: "var(--fg-3)", letterSpacing: ".14em", textTransform: "uppercase", marginBottom: 8, fontFamily: "var(--font-mono)"}}>{g.label}</div>
+                      <div className="swatch-grid">
+                        {g.colors.map(([n, hex]) => (
+                          <Swatch key={n} name={n} hex={hex} onCopy={copy} />
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </PaletteBlock>
+              ))}
           </Section>
         )}
       </div>
@@ -707,9 +726,9 @@ function PageLogo() {
           </div>
         </Section>
 
-        <Section id="clients" num="03" title="Client Logos"
-          desc="클라이언트 브랜드 로고. 각 브랜드 가이드에 맞는 배경 위에서만 사용하세요.">
-          {Object.entries(window.MDS_DATA.clients).filter(([, c]) => c.logo).map(([key, c]) => (
+        <Section id="clients" num="03" title="Brand Logos"
+          desc="클라이언트 및 자사 브랜드 로고. 각 브랜드 가이드에 맞는 배경 위에서만 사용하세요.">
+          {[...Object.entries(window.MDS_DATA.clients), ...Object.entries(window.MDS_DATA.inhouse)].filter(([, c]) => c.logo).map(([key, c]) => (
             <div key={key} className="logo-card">
               <div className={"stage" + (c.logo.darkBg ? " dark" : "")}>
                 <img src={c.logo.src} alt={`${c.label} 로고`} style={{maxWidth: "60%", maxHeight: 48, objectFit: "contain"}} />
@@ -742,7 +761,7 @@ function PageLogo() {
       <ToC items={[
         {id: "primary", label: "Primary"},
         {id: "mono", label: "Tonal & Gradient"},
-        {id: "clients", label: "Client Logos"},
+        {id: "clients", label: "Brand Logos"},
         {id: "rules", label: "규칙"}
       ]} active={useScrollSpy(["primary","mono","clients","rules"])} />
     </div>

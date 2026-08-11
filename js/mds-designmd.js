@@ -73,8 +73,7 @@ window.MDS_MD_COMMON = "# Mplanit Design System — Spec Document\n\n> **이 문
   /* 브랜드 컬러/타이포/로고 섹션 md 생성 */
   function brandSection(key) {
     var D = window.MDS_DATA;
-    var isInhouse = key === "Mplanit" || key === "AILAB";
-    var src = isInhouse ? D.inhouse[key] : D.clients[key];
+    var src = D.clients[key] || D.inhouse[key];
     if (!src) return "";
     var label = src.label || (key === "Mplanit" ? "엠플랜잇" : key === "AILAB" ? "AI-LAB" : key);
     var md = "\n---\n\n# 브랜드 토큰 — " + label + " (" + key + ")\n\n";
@@ -101,8 +100,7 @@ window.MDS_MD_COMMON = "# Mplanit Design System — Spec Document\n\n> **이 문
     }
 
     /* 타이포그래피 */
-    var typoKey = isInhouse ? "common" : key;
-    var typo = D.typography[typoKey] || D.typography.common;
+    var typo = D.typography[key] || D.typography.common;
     md += "## Typography — " + esc(typo.name) + "\n\n| 용도 | 폰트 | Weight |\n|---|---|---|\n";
     typo.fonts.forEach(function (f) {
       md += "| " + esc(f.role) + " | " + esc(f.family) + " | " + f.weight + " |\n";
@@ -126,6 +124,10 @@ window.MDS_MD_COMMON = "# Mplanit Design System — Spec Document\n\n> **이 문
     items.push({ key: "AILAB", label: "AI-LAB" });
     Object.keys(D.clients).forEach(function (k) {
       items.push({ key: k, label: D.clients[k].label || k });
+    });
+    Object.keys(D.inhouse).forEach(function (k) {
+      if (k === "Mplanit" || k === "AILAB") return;
+      items.push({ key: k, label: D.inhouse[k].label || k });
     });
     return items;
   };

@@ -120,6 +120,25 @@ window.MDS_DATA = {
           ["aia-paper","#F1F5F9"],["aia-gold","#C0A062"]
         ]}
       ]
+    }
+  },
+  inhouse: {
+    Mplanit: {
+      desc: "강한 인디고 + 모던 그레이",
+      groups: [
+        { label: "Primary", colors: [
+          ["mp-logo-blue","#3048A2"],["mp-deep","#1F2D63"],["mp-ink","#0B0F23"],
+          ["mp-mist","#E1E5F4"],["mp-paper","#F2F4FB"]
+        ]},
+        { label: "Sub", colors: [
+          ["mp-fg-1","#050F26"],["mp-fg-2","#26334A"],["mp-fg-3","#76798E"],
+          ["mp-line","#EAECF0"],["mp-line-strong","#CDD1D8"]
+        ]}
+      ]
+    },
+    AILAB: {
+      desc: "사이언스의 청량함을 담은 그래디언트 듀오",
+      groups: []
     },
     GS: {
       label: "지셀라",
@@ -211,25 +230,6 @@ window.MDS_DATA = {
           ["dd-gray-800","#464A4D"],["dd-black","#17191A"]
         ]}
       ]
-    }
-  },
-  inhouse: {
-    Mplanit: {
-      desc: "강한 인디고 + 모던 그레이",
-      groups: [
-        { label: "Primary", colors: [
-          ["mp-logo-blue","#3048A2"],["mp-deep","#1F2D63"],["mp-ink","#0B0F23"],
-          ["mp-mist","#E1E5F4"],["mp-paper","#F2F4FB"]
-        ]},
-        { label: "Sub", colors: [
-          ["mp-fg-1","#050F26"],["mp-fg-2","#26334A"],["mp-fg-3","#76798E"],
-          ["mp-line","#EAECF0"],["mp-line-strong","#CDD1D8"]
-        ]}
-      ]
-    },
-    AILAB: {
-      desc: "사이언스의 청량함을 담은 그래디언트 듀오",
-      groups: []
     }
   },
   typography: {
