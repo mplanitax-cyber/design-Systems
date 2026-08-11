@@ -44,10 +44,14 @@ function Swatch({ name, hex, onCopy, alpha, gradient }) {
     : alpha
     ? { background: hex }
     : { background: hex };
+  const pct = alpha ? alphaPercent(hex) : null;
   return (
     <div className={"swatch" + (light ? " dark" : "") + (alpha ? " alpha-bg" : "")}
          onClick={() => onCopy(hex, `${name} · ${hex} 복사됨`)}>
       <div className="chip" style={bgStyle}>
+        {pct !== null && (
+          <span className="alpha-pct" style={{ color: alphaPctColor(hex) }}>{pct}%</span>
+        )}
         <span className="copy-hint">CLICK TO COPY</span>
       </div>
       <div className="meta">
@@ -56,6 +60,20 @@ function Swatch({ name, hex, onCopy, alpha, gradient }) {
       </div>
     </div>
   );
+}
+
+/* rgba 문자열에서 불투명도 % 추출 */
+function alphaPercent(rgba) {
+  const m = /rgba?\([^)]*?,\s*([0-9.]+)\s*\)/.exec(rgba);
+  return m ? Math.round(parseFloat(m[1]) * 100) : null;
+}
+/* 알파 칩 위 % 라벨 색 - 진한 검정 칩 위는 흰색, 그 외는 어두운 회색 */
+function alphaPctColor(rgba) {
+  const m = /rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*([0-9.]+)\s*\)/.exec(rgba);
+  if (!m) return "rgba(0,0,0,0.55)";
+  const [, r, g, b, a] = m.map(Number);
+  const dark = (r * 0.299 + g * 0.587 + b * 0.114) < 128 && a >= 0.5;
+  return dark ? "rgba(255,255,255,0.9)" : "rgba(0,0,0,0.55)";
 }
 
 /* ── Palette block ───────────────────────────────────── */
@@ -168,4 +186,4 @@ function useScrollSpy(ids) {
   return active;
 }
 
-Object.assign(window, { Toast, Swatch, PaletteBlock, FilterTabs, Section, CmpCard, PageHeader, ToC, useCopy, useScrollSpy, isLight });
+Object.assign(window, { Toast, Swatch, PaletteBlock, FilterTabs, Section, CmpCard, PageHeader, ToC, useCopy, useScrollSpy, isLight, alphaPercent });

@@ -199,6 +199,7 @@ function PageColor({ copy }) {
                   <div key={a.name} className="swatch alpha-bg"
                        onClick={() => copy(a.rgba, `${a.name} 복사됨`)}>
                     <div className="chip" style={{background: a.rgba}}>
+                      <span className="alpha-pct" style={{color: "rgba(0,0,0,0.55)"}}>{alphaPercent(a.rgba)}%</span>
                       <span className="copy-hint" style={{color:"rgba(0,0,0,0.6)"}}>CLICK TO COPY</span>
                     </div>
                     <div className="meta">
