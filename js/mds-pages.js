@@ -106,11 +106,11 @@ function PageOverview({ go }) {
         <p className="section-desc" style={{marginTop: 0, marginBottom: 24}}>제품 어디에나 쓸 수 있도록 정제된 12개의 핵심 컴포넌트.</p>
         <div className="cmp-overview">
           {[
-            ["Header","v0.0.0"],["Footer","v0.0.1"],["Tabs","v0.0.0"],["Menu","v0.0.0"],
-            ["Button","v0.0.0"],["Text field","v0.0.1"],["Checkbox","v0.0.0"],["Toggle","v0.0.0"],
-            ["Table","v0.00"],["Cards","v0.0.0"],["Popup","v0.0.0"],["Logo","v0.0.0"]
-          ].map(([n,v]) => (
-            <div key={n} className="cmp-tile" onClick={() => go("components")}>
+            ["Header","v0.0.0","header"],["Footer","v0.0.1","footer"],["Tabs","v0.0.0","tabs"],["Menu","v0.0.0","menu"],
+            ["Button","v0.0.0","button"],["Text field","v0.0.1","input"],["Checkbox","v0.0.0","checkbox"],["Toggle","v0.0.0","toggle"],
+            ["Table","v0.00","table"],["Cards","v0.0.0","card"],["Popup","v0.0.0","popup"],["Logo","v0.0.0",null]
+          ].map(([n,v,anchor]) => (
+            <div key={n} className="cmp-tile" onClick={() => anchor ? go("components", anchor) : go("logo")}>
               <div className="name">{n}</div>
               <div className="cnt">{v}</div>
             </div>

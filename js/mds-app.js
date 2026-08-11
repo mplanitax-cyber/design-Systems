@@ -22,10 +22,19 @@ function App() {
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
-  function go(p) {
+  function go(p, anchor) {
     setPage(p);
     location.hash = "#/" + p;
-    window.scrollTo({ top: 0 });
+    if (anchor) {
+      // 페이지 전환 렌더가 커밋된 뒤 해당 섹션으로 스크롤
+      setTimeout(() => {
+        const el = document.getElementById(anchor);
+        if (el) el.scrollIntoView({ block: "start" });
+        else window.scrollTo({ top: 0 });
+      }, 0);
+    } else {
+      window.scrollTo({ top: 0 });
+    }
   }
 
   useEffect(() => {
