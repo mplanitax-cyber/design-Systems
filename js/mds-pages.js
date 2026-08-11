@@ -452,7 +452,7 @@ function PageFoundation({ copy }) {
 }
 
 /* ───────────────────────── COMPONENTS ─────────────────────── */
-function PageComponents() {
+function PageComponents({ copy }) {
   const sections = [
     {id: "header", label: "Header"},
     {id: "footer", label: "Footer"},
@@ -666,10 +666,65 @@ function PageComponents() {
               ))}
             </div>
           </CmpCard>
+          <IconLibrary copy={copy} />
         </Section>
       </div>
       <ToC items={sections} active={active} />
     </div>
+  );
+}
+
+/* ── 공통 아이콘 라이브러리 (designSystem_mplanit 공통 아이콘 세트) ── */
+function IconLibrary({ copy }) {
+  const data = window.MDS_ICONS || {};
+  const cats = Object.keys(data);
+  const all = useMemo(() => cats.flatMap(c => data[c].map(ic => ({ cat: c, name: ic.name, svg: ic.svg }))), []);
+  const [cat, setCat] = useState("all");
+  const [q, setQ] = useState("");
+  const [size, setSize] = useState(24);
+
+  const shown = useMemo(() => all.filter(ic => {
+    if (cat !== "all" && ic.cat !== cat) return false;
+    if (q && ic.name.toLowerCase().indexOf(q.toLowerCase().trim()) < 0) return false;
+    return true;
+  }), [cat, q]);
+
+  function displaySvg(svg) {
+    return svg
+      .replace(/width="[0-9]+"/, `width="${size}"`)
+      .replace(/height="[0-9]+"/, `height="${size}"`)
+      .replace(/#7F8A94/g, "currentColor");
+  }
+
+  if (!cats.length) return null;
+  return (
+    <CmpCard title="공통 아이콘 라이브러리" tag={`common · ${all.length} · click to copy`}>
+      <div className="icon-lib">
+        <FilterTabs active={cat} onChange={setCat}
+          items={[{ value: "all", label: `전체 (${all.length})` }].concat(
+            cats.map(c => ({ value: c, label: `${c} (${data[c].length})` }))
+          )} />
+        <div className="icon-lib-controls">
+          <input className="icon-lib-search" value={q} onChange={e => setQ(e.target.value)}
+                 placeholder="아이콘 이름 검색..." />
+          <FilterTabs active={size} onChange={setSize}
+            items={[{ value: 24, label: "24px" }, { value: 48, label: "48px" }]} />
+        </div>
+        <div className="icon-lib-grid">
+          {shown.map(ic => (
+            <div key={ic.cat + "/" + ic.name} className="icon-lib-card"
+                 title={ic.name + " - 클릭하여 SVG 복사"}
+                 onClick={() => copy(ic.svg, `${ic.name} SVG 복사됨`)}>
+              <div className="icon-lib-preview" dangerouslySetInnerHTML={{ __html: displaySvg(ic.svg) }} />
+              <span className="nm">{ic.name}</span>
+            </div>
+          ))}
+        </div>
+        {shown.length === 0 && (
+          <div className="icon-lib-empty">검색 결과가 없습니다.</div>
+        )}
+      </div>
+    </CmpCard>
   );
 }
 

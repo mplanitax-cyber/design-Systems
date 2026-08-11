@@ -823,6 +823,43 @@ a { color: inherit; text-decoration: none; cursor: pointer; }
   font-family: var(--font-mono); font-size: 10px; color: var(--fg-3);
 }
 
+/* Icon library (공통 아이콘) */
+.icon-lib { width: 100%; }
+.icon-lib .filter-tabs { flex-wrap: wrap; margin-bottom: 12px; }
+.icon-lib-controls .filter-tabs { margin-bottom: 0; }
+.icon-lib-controls {
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.icon-lib-search {
+  flex: 1; min-width: 200px; max-width: 320px;
+  padding: 8px 12px; font-size: 13px;
+  border: 1px solid var(--line-subtle); border-radius: 8px;
+  background: var(--bg-1); color: var(--fg-1);
+  font-family: inherit;
+}
+.icon-lib-search:focus { outline: none; border-color: var(--brand-logo-blue); }
+.icon-lib-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+  gap: 4px; width: 100%;
+}
+.icon-lib-card {
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  padding: 16px 8px; border-radius: 8px;
+  cursor: pointer; transition: background 0.15s;
+  color: var(--fg-2);
+}
+.icon-lib-card:hover { background: var(--bg-soft); }
+.icon-lib-card .icon-lib-preview { display: flex; align-items: center; justify-content: center; }
+.icon-lib-card .nm {
+  font-family: var(--font-mono); font-size: 10px; color: var(--fg-3);
+  text-align: center; word-break: break-all; line-height: 1.3;
+}
+.icon-lib-empty {
+  width: 100%; padding: 32px; text-align: center;
+  font-size: 13px; color: var(--fg-3);
+}
+
 /* ─────────────── TYPOGRAPHY PAGE ─────────────── */
 .font-card {
   display: grid; grid-template-columns: 1fr auto;

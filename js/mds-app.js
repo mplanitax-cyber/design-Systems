@@ -115,7 +115,7 @@ function App() {
           {page === "color" && <PageColor copy={copy} />}
           {page === "typography" && <PageTypography copy={copy} />}
           {page === "foundation" && <PageFoundation copy={copy} />}
-          {page === "components" && <PageComponents />}
+          {page === "components" && <PageComponents copy={copy} />}
           {page === "logo" && <PageLogo />}
         </main>
       </div>
