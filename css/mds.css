@@ -500,7 +500,7 @@ a { color: inherit; text-decoration: none; cursor: pointer; }
 }
 
 /* ─────────────── PALETTE ─────────────── */
-.palette { margin-bottom: 40px; }
+.palette { margin-bottom: 40px; scroll-margin-top: 80px; }
 .palette-head {
   display: flex; align-items: baseline; justify-content: space-between;
   margin-bottom: 12px;
