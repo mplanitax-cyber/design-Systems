@@ -87,7 +87,7 @@ function PageOverview({ go }) {
         <div className="feature" onClick={() => go("typography")}>
           <div className="num">02 / FOUNDATION</div>
           <h3>타이포그래피</h3>
-          <p>Pretendard 기반 12 토큰 — 브랜드별 디스플레이 폰트와 함께.</p>
+          <p>Pretendard 기반 12 토큰 - 브랜드별 디스플레이 폰트와 함께.</p>
           <span className="arrow">자세히 보기 →</span>
         </div>
         <div className="feature" onClick={() => go("foundation")}>
@@ -313,7 +313,7 @@ function PageTypography({ copy }) {
                 onClick={() => copy(`${t.token} · ${t.size}px / ${t.weightLabel}`, `${t.token} 복사됨`)}
                 style={{cursor: "pointer"}}>
                 <div className="token">{t.token}</div>
-                <div className="role">{t.role || "—"}</div>
+                <div className="role">{t.role || "-"}</div>
                 <div className="v">{t.size}px</div>
                 <div className="v">{t.weight} {t.weightLabel}</div>
                 <div className="v">{t.lh}</div>
@@ -338,7 +338,7 @@ function PageTypography({ copy }) {
               명료한 위계와 일관된 리듬으로 만드는 디자인.
             </div>
             <div style={{fontSize: 18, fontWeight: 400, lineHeight: 1.222, color: "var(--fg-2)", marginBottom: 20}}>
-              모든 화면은 Token에서 시작합니다. 같은 패밀리, 같은 사이즈, 같은 굵기 — 그래서 브랜드는 한 사람의 목소리를 갖습니다.
+              모든 화면은 Token에서 시작합니다. 같은 패밀리, 같은 사이즈, 같은 굵기 - 그래서 브랜드는 한 사람의 목소리를 갖습니다.
             </div>
             <div style={{fontSize: 14, fontWeight: 500, color: "var(--fg-3)"}}>
               자세히 보기 →
@@ -669,7 +669,7 @@ function PageLogo() {
             </div>
             <div className="meta">
               <span className="name">Primary · Light Background</span>
-              <span className="desc">기본 사용 — 흰색/밝은 배경 위. 워드마크: #1B468B</span>
+              <span className="desc">기본 사용 - 흰색/밝은 배경 위. 워드마크: #1B468B</span>
             </div>
           </div>
           <div className="logo-card">
@@ -692,7 +692,7 @@ function PageLogo() {
             </div>
             <div className="meta">
               <span className="name">Tonal · Soft Gray</span>
-              <span className="desc">밝은 회색 배경(F6F7F9) 위 — 워드마크 #1B468B 유지</span>
+              <span className="desc">밝은 회색 배경(F6F7F9) 위 - 워드마크 #1B468B 유지</span>
             </div>
           </div>
           <div className="logo-card">
@@ -702,7 +702,7 @@ function PageLogo() {
             </div>
             <div className="meta">
               <span className="name">On Brand Gradient</span>
-              <span className="desc">AI-LAB 그래디언트(#45BBE9 → #064EC8) — 워드마크 #FFFFFF</span>
+              <span className="desc">AI-LAB 그래디언트(#45BBE9 → #064EC8) - 워드마크 #FFFFFF</span>
             </div>
           </div>
         </Section>

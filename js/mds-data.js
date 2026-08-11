@@ -1,4 +1,4 @@
-﻿/* MDS data — color tokens, typography, etc. */
+﻿/* MDS data - color tokens, typography, etc. */
 window.MDS_DATA = {
   primitives: [
     { name: "Blue", desc: "신뢰 / Primary 후보군", stops: [
@@ -123,8 +123,8 @@ window.MDS_DATA = {
     },
     GS: {
       label: "지셀라",
-      desc: "지셀라(gselah.com) — 클래식한 딥 네이비와 정제된 뉴트럴",
-      logo: { src: "logos/gselah.png", darkBg: false, note: "G·selah 워드마크 — 밝은 배경 위 사용" },
+      desc: "지셀라(gselah.com) - 클래식한 딥 네이비와 정제된 뉴트럴",
+      logo: { src: "logos/gselah.png", darkBg: false, note: "G·selah 워드마크 - 밝은 배경 위 사용" },
       groups: [
         { label: "Primary", colors: [
           ["gs-navy","#264073"],["gs-navy-10","#F0F5FF"],["gs-navy-50","#C7DBFF"],
@@ -142,8 +142,8 @@ window.MDS_DATA = {
     },
     SS: {
       label: "쏙쏙",
-      desc: "쏙쏙(soksokcompany.com) — 경쾌한 인디고와 프레시 틸의 듀오",
-      logo: { src: "logos/soksok.png", darkBg: false, note: "쏙쏙 컬러 로고 — 밝은 배경 위 사용" },
+      desc: "쏙쏙(soksokcompany.com) - 경쾌한 인디고와 프레시 틸의 듀오",
+      logo: { src: "logos/soksok.png", darkBg: false, note: "쏙쏙 컬러 로고 - 밝은 배경 위 사용" },
       groups: [
         { label: "Primary", colors: [
           ["ss-indigo","#383BA8"],["ss-indigo-10","#F2F5FF"],["ss-indigo-50","#CFD8FF"],
@@ -170,8 +170,8 @@ window.MDS_DATA = {
     },
     HC: {
       label: "헬스케어",
-      desc: "프로헬스코리아(prohealthkorea.com) — 생명력 있는 비타 그린",
-      logo: { src: "logos/prohealth-white.png", darkBg: true, note: "PRO HEALTH 화이트 로고 — 다크/네이비 배경 위 사용" },
+      desc: "프로헬스코리아(prohealthkorea.com) - 생명력 있는 비타 그린",
+      logo: { src: "logos/prohealth-white.png", darkBg: true, note: "PRO HEALTH 화이트 로고 - 다크/네이비 배경 위 사용" },
       groups: [
         { label: "Primary", colors: [
           ["hc-green","#2EC405"],["hc-green-10","#E2FFDD"],["hc-green-50","#98F589"],
@@ -189,8 +189,8 @@ window.MDS_DATA = {
     },
     DD: {
       label: "디디다",
-      desc: "디디다(dd-da.co.kr) — 딥 블루와 스카이 블루의 스테이 브랜드",
-      logo: { src: "logos/ddda.png", darkBg: false, note: "DDDA · YOUR STAY MATE — 밝은 배경 위 사용" },
+      desc: "디디다(dd-da.co.kr) - 딥 블루와 스카이 블루의 스테이 브랜드",
+      logo: { src: "logos/ddda.png", darkBg: false, note: "DDDA · YOUR STAY MATE - 밝은 배경 위 사용" },
       groups: [
         { label: "Primary", colors: [
           ["dd-blue","#0032A0"],["dd-blue-10","#F0F5FF"],["dd-blue-50","#C7DBFF"],
@@ -237,73 +237,73 @@ window.MDS_DATA = {
       name: "공통 (Pretendard)",
       label: "공통",
       fonts: [
-        { family: "Pretendard 700 — Bold", weight: 700, role: "Display · 강조" },
-        { family: "Pretendard 600 — SemiBold", weight: 600, role: "Heading" },
-        { family: "Pretendard 500 — Medium", weight: 500, role: "Subhead · Button" },
-        { family: "Pretendard 400 — Regular", weight: 400, role: "Body" }
+        { family: "Pretendard 700 - Bold", weight: 700, role: "Display · 강조" },
+        { family: "Pretendard 600 - SemiBold", weight: 600, role: "Heading" },
+        { family: "Pretendard 500 - Medium", weight: 500, role: "Subhead · Button" },
+        { family: "Pretendard 400 - Regular", weight: 400, role: "Body" }
       ]
     },
     AIA: {
-      name: "AIA — Paperlogy (Display)",
+      name: "AIA - Paperlogy (Display)",
       label: "AIA",
       fonts: [
-        { family: "Paperlogy 7 Bold — Display", weight: 700, role: "H1 · T1 (브랜드 디스플레이)", alt: true, fontFamily: "'Paperlogy', Pretendard, sans-serif" },
-        { family: "Pretendard 600 — SemiBold", weight: 600, role: "H2~H4" },
-        { family: "Pretendard 400 — Regular", weight: 400, role: "Body" }
+        { family: "Paperlogy 7 Bold - Display", weight: 700, role: "H1 · T1 (브랜드 디스플레이)", alt: true, fontFamily: "'Paperlogy', Pretendard, sans-serif" },
+        { family: "Pretendard 600 - SemiBold", weight: 600, role: "H2~H4" },
+        { family: "Pretendard 400 - Regular", weight: 400, role: "Body" }
       ]
     },
     HG: {
-      name: "흥국화재 — Gmarket Sans",
+      name: "흥국화재 - Gmarket Sans",
       label: "흥국화재",
       fonts: [
-        { family: "Gmarket Sans Bold — Display", weight: 700, role: "H1 · T1 (브랜드 디스플레이)", alt: true, fontFamily: "'GmarketSans', Pretendard, sans-serif" },
-        { family: "Pretendard 600 — SemiBold", weight: 600, role: "H2~H4" },
-        { family: "Pretendard 400 — Regular", weight: 400, role: "Body" }
+        { family: "Gmarket Sans Bold - Display", weight: 700, role: "H1 · T1 (브랜드 디스플레이)", alt: true, fontFamily: "'GmarketSans', Pretendard, sans-serif" },
+        { family: "Pretendard 600 - SemiBold", weight: 600, role: "H2~H4" },
+        { family: "Pretendard 400 - Regular", weight: 400, role: "Body" }
       ]
     },
     WC: {
-      name: "웰컴 — WelcomeBM",
+      name: "웰컴 - WelcomeBM",
       label: "웰컴저축은행",
       fonts: [
-        { family: "WelcomeBM Bold — Display", weight: 700, role: "H1 · T1 (브랜드 디스플레이)", alt: true, fontFamily: "'WelcomeBM', Pretendard, sans-serif" },
-        { family: "Pretendard 600 — SemiBold", weight: 600, role: "H2~H4" },
-        { family: "Pretendard 400 — Regular", weight: 400, role: "Body" }
+        { family: "WelcomeBM Bold - Display", weight: 700, role: "H1 · T1 (브랜드 디스플레이)", alt: true, fontFamily: "'WelcomeBM', Pretendard, sans-serif" },
+        { family: "Pretendard 600 - SemiBold", weight: 600, role: "H2~H4" },
+        { family: "Pretendard 400 - Regular", weight: 400, role: "Body" }
       ]
     },
     GS: {
-      name: "지셀라 — Montserrat",
+      name: "지셀라 - Montserrat",
       label: "지셀라",
       fonts: [
-        { family: "Montserrat Bold — Display", weight: 700, role: "H1 · T1 (브랜드 디스플레이, 라틴 전용 · 한글은 Pretendard)", alt: true, fontFamily: "'Montserrat', Pretendard, sans-serif" },
-        { family: "Montserrat 500 — Medium", weight: 500, role: "Subhead · Button (라틴)", fontFamily: "'Montserrat', Pretendard, sans-serif" },
-        { family: "Pretendard 400 — Regular", weight: 400, role: "Body (한글)" }
+        { family: "Montserrat Bold - Display", weight: 700, role: "H1 · T1 (브랜드 디스플레이, 라틴 전용 · 한글은 Pretendard)", alt: true, fontFamily: "'Montserrat', Pretendard, sans-serif" },
+        { family: "Montserrat 500 - Medium", weight: 500, role: "Subhead · Button (라틴)", fontFamily: "'Montserrat', Pretendard, sans-serif" },
+        { family: "Pretendard 400 - Regular", weight: 400, role: "Body (한글)" }
       ]
     },
     SS: {
-      name: "쏙쏙 — Paperlogy",
+      name: "쏙쏙 - Paperlogy",
       label: "쏙쏙",
       fonts: [
-        { family: "Paperlogy 6 SemiBold — Display", weight: 600, role: "H1 · T1 (브랜드 디스플레이)", alt: true, fontFamily: "'Paperlogy', Pretendard, sans-serif" },
+        { family: "Paperlogy 6 SemiBold - Display", weight: 600, role: "H1 · T1 (브랜드 디스플레이)", alt: true, fontFamily: "'Paperlogy', Pretendard, sans-serif" },
         { family: "Paperlogy 5 Medium", weight: 500, role: "Subhead · Button", fontFamily: "'Paperlogy', Pretendard, sans-serif" },
         { family: "Paperlogy 4 Regular", weight: 400, role: "Body", fontFamily: "'Paperlogy', Pretendard, sans-serif" }
       ]
     },
     HC: {
-      name: "헬스케어 — Pretendard",
+      name: "헬스케어 - Pretendard",
       label: "헬스케어",
       fonts: [
-        { family: "Pretendard 700 — Bold", weight: 700, role: "Display · 강조" },
-        { family: "Pretendard 600 — SemiBold", weight: 600, role: "Heading" },
-        { family: "Pretendard 400 — Regular", weight: 400, role: "Body" }
+        { family: "Pretendard 700 - Bold", weight: 700, role: "Display · 강조" },
+        { family: "Pretendard 600 - SemiBold", weight: 600, role: "Heading" },
+        { family: "Pretendard 400 - Regular", weight: 400, role: "Body" }
       ]
     },
     DD: {
-      name: "디디다 — Pretendard Variable",
+      name: "디디다 - Pretendard Variable",
       label: "디디다",
       fonts: [
-        { family: "Pretendard Variable 700 — Display", weight: 700, role: "H1 · T1 (브랜드 디스플레이)", alt: true, fontFamily: "'Pretendard Variable', Pretendard, sans-serif" },
-        { family: "Pretendard Variable 500 — Medium", weight: 500, role: "Subhead · Button", fontFamily: "'Pretendard Variable', Pretendard, sans-serif" },
-        { family: "Pretendard Variable 400 — Regular", weight: 400, role: "Body", fontFamily: "'Pretendard Variable', Pretendard, sans-serif" }
+        { family: "Pretendard Variable 700 - Display", weight: 700, role: "H1 · T1 (브랜드 디스플레이)", alt: true, fontFamily: "'Pretendard Variable', Pretendard, sans-serif" },
+        { family: "Pretendard Variable 500 - Medium", weight: 500, role: "Subhead · Button", fontFamily: "'Pretendard Variable', Pretendard, sans-serif" },
+        { family: "Pretendard Variable 400 - Regular", weight: 400, role: "Body", fontFamily: "'Pretendard Variable', Pretendard, sans-serif" }
       ]
     }
   },
