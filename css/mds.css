@@ -851,6 +851,19 @@ a { color: inherit; text-decoration: none; cursor: pointer; }
   margin-bottom: 12px; cursor: grab; user-select: none;
 }
 .icon-lib > .filter-tabs::-webkit-scrollbar { display: none; }
+/* 스크롤 가능 방향 끝을 페이드 처리 - 더 있음을 시각적으로 표시 */
+.icon-lib > .filter-tabs.fade-r {
+  -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 48px), transparent);
+  mask-image: linear-gradient(90deg, #000 calc(100% - 48px), transparent);
+}
+.icon-lib > .filter-tabs.fade-l {
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 48px);
+  mask-image: linear-gradient(90deg, transparent, #000 48px);
+}
+.icon-lib > .filter-tabs.fade-l.fade-r {
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 48px, #000 calc(100% - 48px), transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 48px, #000 calc(100% - 48px), transparent);
+}
 .icon-lib > .filter-tabs .filter-tab { flex: 0 0 auto; white-space: nowrap; }
 .icon-lib-controls .filter-tabs { margin-bottom: 0; }
 .icon-lib-controls {

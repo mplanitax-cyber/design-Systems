@@ -93,6 +93,17 @@ function PaletteBlock({ id, name, desc, tag, children }) {
 function FilterTabs({ items, active, onChange }) {
   const ref = useRef(null);
   const drag = useRef(null);
+  const [fade, setFade] = useState({ l: false, r: false });
+
+  /* 스크롤 위치에 따라 좌우 페이드 표시 — 끝에 닿으면 해당 쪽 페이드 제거 */
+  function updateFade() {
+    const el = ref.current;
+    if (!el) return;
+    const l = el.scrollLeft > 2;
+    const r = el.scrollLeft + el.clientWidth < el.scrollWidth - 2;
+    setFade(f => (f.l === l && f.r === r) ? f : { l, r });
+  }
+  useEffect(() => { updateFade(); }, [items.length]);
 
   /* 탭이 컨테이너를 넘칠 때만 마우스 드래그로 가로 스크롤 */
   function onPointerDown(e) {
@@ -108,7 +119,7 @@ function FilterTabs({ items, active, onChange }) {
       d.moved = true;
       if (el.setPointerCapture) el.setPointerCapture(e.pointerId);
     }
-    if (d.moved) el.scrollLeft = d.left - dx;
+    if (d.moved) { el.scrollLeft = d.left - dx; updateFade(); }
   }
   function endDrag() {
     const d = drag.current;
@@ -118,7 +129,8 @@ function FilterTabs({ items, active, onChange }) {
   }
 
   return (
-    <div className="filter-tabs" ref={ref}
+    <div className={"filter-tabs" + (fade.l ? " fade-l" : "") + (fade.r ? " fade-r" : "")} ref={ref}
+      onScroll={updateFade}
       onPointerDown={onPointerDown} onPointerMove={onPointerMove}
       onPointerUp={endDrag} onPointerLeave={endDrag}
       onClickCapture={e => {
