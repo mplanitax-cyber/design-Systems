@@ -36,6 +36,40 @@ window.MDS_MD_COMMON = "# Mplanit Design System — Spec Document\n\n> **이 문
     return out.join("\n");
   }
 
+  /* 본문 라인 스크럽 — 헤딩 필터가 남긴 타 브랜드 흔적 제거
+     (공통 CSS 변수 블록의 브랜드 컬러 그룹, 브랜드 전용 스니펫/문장/표행 등) */
+  var BODY_MARKERS = {
+    Mplanit: /엠플랜잇|Mplanit|--color-mp-|[^a-z]mp-logo/i,
+    HG: /흥국|Hungkuk|--color-hg-|[^a-z]hg-|-hg\b|\bHG\b/,
+    AIA: /AIA|--color-aia-|[^a-z]aia-|-aia\b/
+  };
+  function scrubBodyForBrand(md, brandKey) {
+    var lines = md.split("\n");
+    var out = [];
+    var braceSkip = 0;
+    for (var i = 0; i < lines.length; i++) {
+      var line = lines[i];
+      if (braceSkip > 0) {
+        braceSkip += (line.match(/\{/g) || []).length - (line.match(/\}/g) || []).length;
+        if (braceSkip < 0) braceSkip = 0;
+        continue;
+      }
+      var bad = false;
+      for (var key in BODY_MARKERS) {
+        if (key !== brandKey && BODY_MARKERS[key].test(line)) { bad = true; break; }
+      }
+      if (bad) {
+        var opens = (line.match(/\{/g) || []).length;
+        var closes = (line.match(/\}/g) || []).length;
+        if (opens > closes) braceSkip = opens - closes;
+        continue;
+      }
+      out.push(line);
+    }
+    /* 연속 빈 줄 정리 */
+    return out.join("\n").replace(/\n{3,}/g, "\n\n");
+  }
+
   /* 브랜드 컬러/타이포/로고 섹션 md 생성 */
   function brandSection(key) {
     var D = window.MDS_DATA;
@@ -96,17 +130,21 @@ window.MDS_MD_COMMON = "# Mplanit Design System — Spec Document\n\n> **이 문
     return items;
   };
 
-  /* md 조립 */
+  /* md 조립 — 긴 대시(—)는 하이픈(-)으로 통일 */
+  function normalizeDashes(s) { return s.replace(/[—–]/g, "-"); }
+
   window.buildDesignMd = function (key) {
     var common = window.MDS_MD_COMMON;
+    var result;
     if (key === "all") {
-      var all = common + "\n";
+      result = common + "\n";
       window.MDS_MD_ITEMS().forEach(function (it) {
-        if (it.key !== "all") all += brandSection(it.key);
+        if (it.key !== "all") result += brandSection(it.key);
       });
-      return all;
+    } else {
+      result = scrubBodyForBrand(filterCommonForBrand(common, key), key) + brandSection(key);
     }
-    return filterCommonForBrand(common, key) + brandSection(key);
+    return normalizeDashes(result);
   };
 
   /* 다운로드 실행 */
