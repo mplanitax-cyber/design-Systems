@@ -422,7 +422,7 @@ function PageFoundation({ copy }) {
         <Section id="radius" num="02" title="Radius">
           <div className="radius-grid">
             {radius.map(([n, v, note]) => (
-              <div key={n} className="radius-cell" style={{borderRadius: v === 999 ? 999 : v}}
+              <div key={n} className={"radius-cell" + (v === 999 ? " full" : "")} style={{borderRadius: v === 999 ? 999 : v}}
                    onClick={() => copy(`var(--${n})`, `${n} 복사됨`)}>
                 <span className="num">{n}</span>
                 <div>{note} · {v === 999 ? "999px" : v + "px"}</div>
