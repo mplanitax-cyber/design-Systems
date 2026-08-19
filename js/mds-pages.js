@@ -22,6 +22,12 @@ function DesignMdMenu() {
     window.downloadDesignMd(key);
   }
 
+  function pickHarness() {
+    setSel("harness");
+    setOpen(false);
+    window.downloadHarnessZip();
+  }
+
   return (
     <div className="mdmenu-wrap" ref={wrapRef}>
       <button type="button" className={"mdmenu-trigger" + (open ? " open" : "")} onClick={() => setOpen(o => !o)}>
@@ -48,6 +54,17 @@ function DesignMdMenu() {
               )}
             </button>
           ))}
+          <div className="mdmenu-divider"></div>
+          <button type="button"
+            className={"mdmenu-item" + (sel === "harness" ? " selected" : "")}
+            onClick={pickHarness}>
+            <span>MDS 전체 + 하네스 (zip)</span>
+            {sel === "harness" && (
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                <path d="M4 9.5L7.5 13L14 5.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            )}
+          </button>
         </div>
       )}
     </div>

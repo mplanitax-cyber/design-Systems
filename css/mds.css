@@ -1178,6 +1178,7 @@ a { color: inherit; text-decoration: none; cursor: pointer; }
   transition: background .12s, color .12s;
 }
 .mdmenu-item:hover { background: #F5F7FA; }
+.mdmenu-divider { height: 1px; margin: 2px 8px; background: #DCE0E5; }
 .mdmenu-item.selected {
   background: #F0F4FB; color: #19448C;
   box-shadow: 0 2px 4px rgba(6, 78, 200, 0.25);
