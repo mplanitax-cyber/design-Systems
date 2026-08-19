@@ -86,8 +86,14 @@
     "README.md"
   ];
 
-  /* design-v2.md + mds-harness/* 를 zip으로 내려받기 */
-  window.downloadHarnessZip = function () {
+  /* design md + mds-harness/* 를 zip으로 내려받기.
+     key: "all"(전체, design-v2.md) 또는 브랜드 키(design-{라벨}.md) */
+  window.downloadHarnessZip = function (key) {
+    key = key || "all";
+    var item = window.MDS_MD_ITEMS().filter(function (i) { return i.key === key; })[0];
+    var label = item ? item.label : key;
+    var mdName = key === "all" ? "design-v2.md" : "design-" + label + ".md";
+    var zipName = key === "all" ? "mds-design-system.zip" : "mds-" + label + ".zip";
     return Promise.all(HARNESS_FILES.map(function (f) {
       return fetch("mds-harness/" + f).then(function (r) {
         if (!r.ok) throw new Error("mds-harness/" + f + " 로드 실패 (HTTP " + r.status + ")");
@@ -96,10 +102,10 @@
         return { name: "mds-harness/" + f, data: new Uint8Array(buf) };
       });
     })).then(function (entries) {
-      entries.unshift({ name: "design-v2.md", data: new TextEncoder().encode(window.buildDesignMd("all")) });
+      entries.unshift({ name: mdName, data: new TextEncoder().encode(window.buildDesignMd(key)) });
       var url = URL.createObjectURL(buildZip(entries));
       var a = document.createElement("a");
-      a.href = url; a.download = "mds-design-system.zip";
+      a.href = url; a.download = zipName;
       document.body.appendChild(a); a.click();
       document.body.removeChild(a); URL.revokeObjectURL(url);
     }).catch(function (err) {

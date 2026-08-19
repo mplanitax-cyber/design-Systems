@@ -19,13 +19,13 @@ function DesignMdMenu() {
   function pick(key) {
     setSel(key);
     setOpen(false);
-    window.downloadDesignMd(key);
+    window.downloadHarnessZip(key);
   }
 
-  function pickHarness() {
-    setSel("harness");
+  function pickMdOnly() {
+    setSel("md-only");
     setOpen(false);
-    window.downloadHarnessZip();
+    window.downloadDesignMd("all");
   }
 
   return (
@@ -35,7 +35,7 @@ function DesignMdMenu() {
           <path d="M13 4C13 3.44772 12.5523 3 12 3C11.4477 3 11 3.44772 11 4V12.5859L8.70711 10.293C8.31658 9.90246 7.68342 9.90246 7.29289 10.293C6.90237 10.6835 6.90237 11.3167 7.29289 11.7072L11.2929 15.7072C11.6834 16.0977 12.3166 16.0977 12.7071 15.7072L16.7071 11.7072C17.0976 11.3167 17.0976 10.6835 16.7071 10.293C16.3166 9.90246 15.6834 9.90246 15.2929 10.293L13 12.5859V4Z" fill="currentColor"/>
           <path d="M3 21C2.44772 21 2 20.5523 2 20V13C2 12.4477 2.44772 12 3 12C3.55229 12 4 12.4477 4 13L4 19L20 19L20 13C20 12.4477 20.4477 12 21 12C21.5523 12 22 12.4477 22 13L22 20C22 20.5523 21.5523 21 21 21L3 21Z" fill="currentColor"/>
         </svg>
-        design.md
+        Design System
         <svg className={"mdmenu-chevron" + (open ? " up" : "")} width="18" height="18" viewBox="0 0 18 18" fill="none">
           <path d="M5 7.5L9 11.5L13 7.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
@@ -56,10 +56,10 @@ function DesignMdMenu() {
           ))}
           <div className="mdmenu-divider"></div>
           <button type="button"
-            className={"mdmenu-item" + (sel === "harness" ? " selected" : "")}
-            onClick={pickHarness}>
-            <span>MDS 전체 + 하네스 (zip)</span>
-            {sel === "harness" && (
+            className={"mdmenu-item" + (sel === "md-only" ? " selected" : "")}
+            onClick={pickMdOnly}>
+            <span>design.md만 (설명 문서)</span>
+            {sel === "md-only" && (
               <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
                 <path d="M4 9.5L7.5 13L14 5.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
