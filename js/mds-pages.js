@@ -81,7 +81,7 @@ function PageOverview({ go }) {
           하나의 토큰,<br/>
           일관된 <span className="accent">경험.</span>
         </h1>
-        <p>mplanit과 클라이언트 제품들을 하나의 언어로 묶는 디자인 시스템입니다. 컬러, 타이포그래피, 컴포넌트의 모든 결정은 토큰에서 시작됩니다.</p>
+        <p>mplanit과 클라이언트 제품들을 하나의 언어로 묶는 디자인 시스템입니다.<br/>컬러, 타이포그래피, 컴포넌트의 모든 결정은 토큰에서 시작됩니다.</p>
         <div className="cta-row">
           <DesignMdMenu />
           <button className="btn btn-ghost btn-lg" onClick={() => go("components")}>컴포넌트 둘러보기</button>
