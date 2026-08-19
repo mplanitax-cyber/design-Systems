@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MDS Harness - 컨테이너 폭 검증</title>
+<link rel="stylesheet" href="./tokens.css">
+<link rel="stylesheet" href="./base.css">
+<style>
+  /* 테스트 페이지 자체 스타일 - 값은 전부 하네스 토큰 참조 */
+  body { font-family: var(--font-family-base); color: var(--color-font-primary); margin: 0; padding: var(--spacing-32); }
+  h1 { font-size: var(--font-size-heading-md); }
+  table { border-collapse: collapse; margin-top: var(--spacing-16); }
+  th, td { border: 1px solid var(--color-border-subtle); padding: var(--spacing-8) var(--spacing-16); font-size: var(--font-size-body-sm); text-align: left; }
+  th { background: var(--color-gray-f7); }
+  .pass { color: var(--color-status-success); font-weight: var(--font-weight-body-strong); }
+  .fail { color: var(--color-status-error); font-weight: var(--font-weight-body-strong); }
+  #summary { margin-top: var(--spacing-16); font-size: var(--font-size-body-md); font-weight: var(--font-weight-body-strong); }
+</style>
+</head>
+<body>
+  <h1>MDS Harness - 브랜드 7종 .container 폭 검증</h1>
+  <p>tokens.css + base.css만 import한 상태에서 data-brand를 바꿔가며 .container의 max-width를 측정한다.</p>
+
+  <div class="container" id="probe"></div>
+
+  <table>
+    <thead><tr><th>data-brand</th><th>기대값 (design-v2.md §15-1)</th><th>측정값</th><th>결과</th></tr></thead>
+    <tbody id="rows"></tbody>
+  </table>
+  <div id="summary"></div>
+
+  <script>
+    // 기대값: design-v2.md §15-1 브랜드별 그리드 (mp = 공통 기준)
+    const CASES = [
+      ["mp",  "1140px"],
+      ["hg",  "1140px"],
+      ["aia", "1140px"],
+      ["ss",  "1280px"],
+      ["dd",  "640px"],
+      ["hc",  "1380px"],
+      ["gs",  "1178px"]
+    ];
+    const probe = document.getElementById("probe");
+    const rows = document.getElementById("rows");
+    let passCount = 0;
+
+    for (const [brand, expected] of CASES) {
+      document.body.setAttribute("data-brand", brand);
+      const actual = getComputedStyle(probe).maxWidth;
+      const ok = actual === expected;
+      if (ok) passCount++;
+      const tr = document.createElement("tr");
+      tr.innerHTML = "<td>" + brand + "</td><td>" + expected + "</td><td>" + actual + "</td>" +
+        "<td class='" + (ok ? "pass'>PASS" : "fail'>FAIL") + "</td>";
+      rows.appendChild(tr);
+    }
+    document.body.removeAttribute("data-brand");
+
+    const summary = document.getElementById("summary");
+    summary.textContent = "결과: " + passCount + "/" + CASES.length + (passCount === CASES.length ? " - 전체 통과" : " - 실패 있음");
+    summary.className = passCount === CASES.length ? "pass" : "fail";
+  </script>
+</body>
+</html>

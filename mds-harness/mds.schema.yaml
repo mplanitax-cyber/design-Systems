@@ -1,0 +1,130 @@
+# =============================================================================
+# MDS Harness - 머신 판독 스펙 (mds.schema.yaml)
+# 유일한 값 출처: design-v2.md (Mplanit Design System Spec Document)
+# md는 설명, 하네스는 강제. 값은 tokens.css와 이 파일에만 존재한다.
+# 이모지 금지. 아이콘은 공통 아이콘 라이브러리 네이밍({name}_line / {name}_filled) 참조:
+#   https://design-systems-chi.vercel.app/#/components
+# =============================================================================
+
+version: "2026-08-11"
+source: design-v2.md
+
+grid:
+  # 공통 그리드 = 엠플랜잇 (design-v2.md §15-1). 전 브랜드 12컬럼 · 24px 거터 고정.
+  columns: 12
+  gutter: 24
+  container_narrow: 760
+  container_wide: 1440
+
+brands:
+  mp:
+    name: "엠플랜잇 (Mplanit)"
+    container: 1140
+    inset: 40
+    header_height:
+      pc: 104
+      mobile: null            # design-v2.md 미기재
+      scrolled: 104           # 높이 동일 - 배경 그라디언트 -> 흰색 + 보더 (§5-1)
+    font: "Pretendard (공통)"
+    notes:
+      - "헤더 Default: var(--gradient-ailab) / Scrolled: 흰 배경 + --color-border-subtle 보더 (§5-1)"
+
+  hg:
+    name: "흥국화재 (HG)"
+    container: 1140
+    inset: 40
+    header_height:
+      pc: 94
+      mobile: null            # design-v2.md 미기재
+      scrolled: null          # 상태 없음 (§5-0 표)
+    font: "Gmarket Sans (Display) + Pretendard"
+
+  aia:
+    name: "AIA"
+    container: 1140
+    inset: 40
+    header_height:
+      pc: 72
+      mobile: null            # design-v2.md 미기재
+      scrolled: null          # 상태 없음 (§5-0 표)
+    font: "Paperlogy (Display) + Pretendard"
+
+  ss:
+    name: "쏙쏙 (SS)"
+    container: 1280
+    inset: 80
+    header_height:
+      pc: 100
+      mobile: 83              # ≤767 (§5-4)
+      scrolled: null          # 상태 없음 (§5-0 표)
+    font: "Paperlogy"
+    notes:
+      - "--soksok-* 접두 사용 금지. 운영 변수는 매핑으로만 치환: -700 -> --ss-indigo-deep / -50 -> --ss-indigo-soft (§5-4)"
+
+  dd:
+    name: "디디다 (DD)"
+    container: 640
+    inset: 16
+    header_height:
+      pc: 79                  # 640 고정폭 단일 뷰포트
+      mobile: 79
+      scrolled: null          # 상태 없음 (§5-0 표)
+    font: "Pretendard Variable"
+    notes:
+      - "모바일 전용 브랜드 - 640 고정폭, 반응형 없음, 미디어쿼리 작성 금지 (§5-5, §16-1)"
+
+  hc:
+    name: "헬스케어 (HC)"
+    container: 1380
+    inset: 30
+    header_height:
+      pc: 121                 # 2단 (유틸 28 + 메인 58)
+      mobile: "8.6rem"        # 1rem=13px 기준 (§5-6)
+      scrolled: "3.6rem"      # 모바일 Scrolled - PC는 높이 유지, 배경만 --hc-navy (§5-6)
+    font: "Pretendard (rem 체계)"
+    notes:
+      - "7개 브랜드 중 유일한 rem 반응형: root 14px -> ≤768 13px -> ≤320 12px. px로 재작성 금지, rem이 정본 (§5-6)"
+
+  gs:
+    name: "지셀라 (GS)"
+    container: 1178
+    inset: 24
+    header_height:
+      pc: 109                 # Default 표시 기준
+      mobile: 55              # ≤767 (§5-7)
+      scrolled: 92            # (§15-1, §5-7)
+    font: "Montserrat Alternates (한글은 Pretendard 폴백)"
+    notes:
+      - "로고 left 72px - 1178 컨테이너의 문서화된 예외 (§5-7)"
+      - "메인 내비 hover/active 없음 (실측 확정, §5-7)"
+      - "레거시 height:129 + top:-20 핵 재현 금지 - 표시값 109 직접 선언 (§5-7)"
+
+# 금지 규칙 - stylelint.config.mjs와 동일 내용의 선언적 목록
+forbidden:
+  - id: no-raw-hex
+    rule: "임의 HEX 금지 - var() 참조만 허용. tokens.css 자신만 예외 (§19)"
+  - id: no-soksok-prefix
+    rule: "--soksok-* 접두 사용 금지 - --ss-* 매핑으로만 치환 (§5-4)"
+  - id: z-index-tokens-only
+    rule: "z-index는 --z-* 토큰만 허용. 9999 금지 (§17)"
+  - id: box-shadow-tokens-only
+    rule: "box-shadow는 --elevation-0..4, --gs-header-shadow만 허용 (§17, §5-7)"
+  - id: container-width-whitelist
+    rule: "max-width 컨테이너 값은 1140/1280/1380/1178/640/760/1440 화이트리스트만 (§15-1)"
+  - id: no-emoji
+    rule: "이모지 절대 금지 (코드·주석·문서 전부). 아이콘은 공통 라이브러리 네이밍으로 참조 표기"
+  - id: no-min-max-mix
+    rule: "미디어쿼리는 max-width 하향식(1279 -> 1023 -> 767 -> 479)만. min/max 혼용 금지 (§16-1)"
+  - id: no-arbitrary-margin
+    rule: "섹션 간격은 .section padding-block으로만. 개별 요소 임의 margin 금지 (§15-3)"
+
+icons:
+  library: "https://design-systems-chi.vercel.app/#/components"
+  naming: "{name}_line / {name}_filled"
+  default_size: 24
+  default_color: currentColor
+  slots:
+    hamburger: menu_line
+    search: search_line
+    phone: "phone_line (아웃라인) / phone_filled (필)"
+    close: "close_line / close_circle_line"

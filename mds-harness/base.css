@@ -1,0 +1,91 @@
+/* ==========================================================================
+   MDS Harness - base.css
+   유일한 값 출처: design-v2.md. tokens.css 다음에 import한다.
+   구성: §15-2 컨테이너·그리드 / §5-0 헤더 셸 / §6-0 푸터 셸 /
+        §16-2 반응형 타이포 / §18 prefers-reduced-motion
+   아이콘: 공통 아이콘 라이브러리 네이밍 참조 (기본 24px / currentColor)
+   ========================================================================== */
+
+/* ── §15-2. 컨테이너 · 섹션 · 그리드 ── */
+.container { width: 100%; max-width: var(--container-max); margin: 0 auto; padding-inline: var(--page-inset); }
+.container--narrow { max-width: var(--container-narrow); }
+.container--wide   { max-width: var(--container-wide); }
+.container--bleed  { max-width: none; padding-inline: 0; }
+
+.section { padding-block: var(--section-y, 120px); }
+.section--tight { padding-block: calc(var(--section-y, 120px) / 2); }
+
+.grid { display: grid; grid-template-columns: repeat(var(--grid-columns), minmax(0, 1fr)); gap: var(--grid-gutter); }
+.col-3 { grid-column: span 3; } .col-4 { grid-column: span 4; }
+.col-6 { grid-column: span 6; } .col-8 { grid-column: span 8; } .col-12 { grid-column: span 12; }
+
+.autogrid { display: grid; gap: var(--grid-gutter); grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+
+@media (max-width: 1279px) {
+  :root { --section-y: 80px; }
+  .container { padding-inline: 24px; }
+  .col-3, .col-4 { grid-column: span 6; }
+}
+@media (max-width: 767px) {
+  :root { --section-y: 60px; }
+  .container { padding-inline: 20px; }
+  .grid { gap: 16px; }
+  [class*="col-"] { grid-column: 1 / -1; }
+  .autogrid { grid-template-columns: 1fr; }
+}
+
+/* ── §5-0. 공통 헤더 셸 (슬롯: logo / nav / actions) ──
+   아이콘 슬롯 가이드 (.hd__icon-btn 안에 넣는 SVG - 공통 아이콘 라이브러리):
+   - 햄버거 메뉴: menu_line · 검색: search_line · 전화: phone_line(아웃라인)/phone_filled(필)
+   - 닫기: close_line 또는 close_circle_line · 기본 24px, 컬러 currentColor */
+.hd { height: var(--header-height); background: var(--header-bg, var(--color-white-100)); border-bottom: var(--header-border, none); }
+.hd__inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding-inline: var(--page-inset);
+  height: 100%;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: var(--spacing-24);
+}
+.hd__logo    { flex: 0 0 auto; display: block; }
+.hd__nav     { display: flex; align-items: center; }
+.hd__actions { flex: 0 0 auto; display: flex; align-items: center; gap: var(--spacing-12); }
+
+/* 아이콘 버튼 - 터치 타겟 44px 이상 보장 */
+.hd__icon-btn { width: 48px; height: 48px; display: inline-flex; align-items: center; justify-content: center; background: none; border: none; cursor: pointer; }
+.hd__icon-btn svg, .hd__icon-btn img { width: 24px; height: 24px; display: block; }
+
+/* 로고 중앙 변형 (HC) */
+.hd__logo--center { position: absolute; left: 50%; transform: translateX(-50%); }
+/* 내비 뷰포트 중앙 변형 (GS) */
+.hd__inner--nav-center { position: relative; justify-content: flex-start; }
+.hd__inner--nav-center .hd__nav { position: absolute; left: 50%; transform: translateX(-50%); }
+/* 2단 변형 (HC) */
+.hd--two-tier { display: flex; flex-direction: column; justify-content: center; }
+
+/* ── §6-0. 공통 푸터 셸 ── */
+.ft { background: var(--footer-bg, var(--color-mp-blue-01)); color: var(--footer-fg, var(--color-white-100)); }
+.ft__inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding-inline: var(--page-inset);
+  padding-block: var(--footer-pad-y, 50px);
+}
+
+/* ── §16-2. 반응형 타이포 (:root 오버라이드 - 컴포넌트 무수정) ── */
+@media (max-width: 1279px) { :root {
+  --font-size-title-hero: 48px; --font-size-title-page-lg: 48px; --font-size-title-page-md: 40px;
+  --font-size-subtitle-lg: 32px; --font-size-subtitle-md: 24px;
+  --font-size-heading-lg: 24px; --font-size-heading-md: 20px; --font-size-body-lg: 18px;
+} }
+@media (max-width: 767px) { :root {
+  --font-size-title-hero: 32px; --font-size-title-page-lg: 32px; --font-size-title-page-md: 28px;
+  --font-size-subtitle-lg: 24px; --font-size-subtitle-md: 20px;
+  --font-size-heading-lg: 20px; --font-size-heading-md: 18px;
+  --font-size-body-lg: 16px; --font-size-body-md: 15px;
+} }
+
+/* ── §18. Motion - prefers-reduced-motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
