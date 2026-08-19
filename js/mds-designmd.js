@@ -154,8 +154,18 @@ window.MDS_MD_FULL = "# Mplanit Design System - Spec Document\n\n> **이 문서 
       result = window.MDS_MD_FULL;
     } else {
       var parsed = parseFull();
+      var common = parsed.common;
+      /* 첫 줄 제목은 스크럽에서 제외하고 브랜드 라벨을 덧붙인다
+         (제목의 "Mplanit"이 브랜드 마커에 걸려 삭제되는 것 방지) */
+      var title = "";
+      if (common.indexOf("# ") === 0) {
+        var nl = common.indexOf("\n");
+        var item = window.MDS_MD_ITEMS().filter(function (i) { return i.key === key; })[0];
+        title = common.slice(0, nl) + " (" + (item ? item.label : key) + ")";
+        common = common.slice(nl);
+      }
       /* 문서에 해당 브랜드 섹션이 없으면 MDS_DATA 기반 자동 생성으로 폴백 */
-      result = scrubBodyForBrand(filterCommonForBrand(parsed.common, key), key)
+      result = title + scrubBodyForBrand(filterCommonForBrand(common, key), key)
              + (parsed.brands[key] || brandSection(key));
     }
     return normalizeDashes(result);
