@@ -25,12 +25,27 @@ window.addEventListener("scroll", () => {
 });
 ```
 
+## 슬라이드 (발표자료)
+
+랜딩이 아닌 16:9 발표자료는 base.css 대신 slides.css를 쓴다 (상세: design-v2.md §20).
+
+```html
+<link rel="stylesheet" href="mds-harness/tokens.css">
+<link rel="stylesheet" href="mds-harness/slides.css">
+<body data-brand="hg">  <!-- 랜딩과 동일하게 브랜드 전환 -->
+  <section class="slide slide--cover"> ... </section>
+```
+
+- 고정 캔버스 1920x1080 - 뷰포트 반응형 미디어쿼리 금지, 축소는 `.slide-viewer`의 scale로만
+- 값은 tokens.css의 `--slide-*` 토큰만 사용 (타입 스케일·여백·차트 팔레트 포함)
+
 ## 파일 구성
 
 | 파일 | 역할 |
 |---|---|
-| `tokens.css` | design-v2.md의 모든 CSS 변수 (공통 + 브랜드 + 상태). 값의 원천 |
+| `tokens.css` | design-v2.md의 모든 CSS 변수 (공통 + 브랜드 + 상태 + 슬라이드). 값의 원천 |
 | `base.css` | 컨테이너·그리드(§15-2), 헤더 셸(§5-0), 푸터 셸(§6-0), 반응형 타이포(§16-2), reduced-motion(§18) |
+| `slides.css` | 발표자료 셸(§20): 1920x1080 캔버스·표지/간지/본문 레이아웃·뷰어 스케일·인쇄 |
 | `mds.schema.yaml` | 머신 판독 스펙: 브랜드 7종 그리드·헤더·폰트·특이사항 + 금지 규칙 |
 | `stylelint.config.mjs` | 금지 규칙 강제 (HEX·soksok·z-index·box-shadow·max-width) |
 | `check-no-emoji.mjs` | 이모지 검출 CI 체크 (grep 기반) |

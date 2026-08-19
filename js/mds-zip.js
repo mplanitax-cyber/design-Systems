@@ -79,6 +79,7 @@
   var HARNESS_FILES = [
     "tokens.css",
     "base.css",
+    "slides.css",
     "mds.schema.yaml",
     "stylelint.config.mjs",
     "check-no-emoji.mjs",

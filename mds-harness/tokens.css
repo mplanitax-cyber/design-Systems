@@ -205,6 +205,44 @@
   --ease-in:  cubic-bezier(0.4, 0, 1, 1);
 }
 
+/* ── §20. Slides (발표자료 - 고정 캔버스 1920x1080, 셸은 slides.css) ── */
+:root {
+  --slide-w: 1920px;
+  --slide-h: 1080px;
+  --slide-inset-x: 120px;
+  --slide-inset-y: 96px;
+  --slide-gap: 40px;
+
+  --slide-font-display: 96px;  /* 표지 제목 */
+  --slide-font-title:   64px;  /* 간지 제목 - 핵심 메시지 */
+  --slide-font-h1:      44px;  /* 본문 슬라이드 제목 */
+  --slide-font-h2:      32px;  /* 소제목 - 리드 문장 */
+  --slide-font-body:    24px;  /* 본문 */
+  --slide-font-caption: 18px;  /* 캡션 - 출처 */
+  --slide-font-meta:    16px;  /* 페이지 번호 - 푸터 메타 */
+  --slide-line-tight: 1.2;
+  --slide-line-body:  1.55;
+
+  --slide-bg: var(--color-white-100);
+  --slide-fg: var(--color-font-primary);
+  --slide-fg-soft: var(--color-font-tertiary);
+  --slide-accent:      var(--color-mp-blue-02);  /* 기본 = 엠플랜잇 */
+  --slide-accent-soft: var(--color-mp-blue-11);
+
+  /* 차트·다이어그램 - §20-4 순서대로만 사용 */
+  --slide-chart-1: var(--slide-accent);
+  --slide-chart-2: var(--color-mp-blue-07);
+  --slide-chart-3: var(--color-mp-blue-09);
+  --slide-chart-4: var(--color-font-tertiary);   /* 중립 */
+  --slide-chart-5: var(--color-border-subtle);   /* 중립 */
+}
+[data-brand="hg"]  { --slide-accent: var(--hg-red);    --slide-accent-soft: var(--hg-red-50);    --slide-chart-2: var(--hg-red-200);    --slide-chart-3: var(--hg-stone); }
+[data-brand="aia"] { --slide-accent: var(--aia-red);   --slide-accent-soft: var(--aia-red-50);   --slide-chart-2: var(--aia-navy);      --slide-chart-3: var(--aia-gold); }
+[data-brand="ss"]  { --slide-accent: var(--ss-indigo); --slide-accent-soft: var(--ss-indigo-10); --slide-chart-2: var(--ss-teal);       --slide-chart-3: var(--ss-indigo-200); }
+[data-brand="dd"]  { --slide-accent: var(--dd-blue);   --slide-accent-soft: var(--dd-blue-10);   --slide-chart-2: var(--dd-sky);        --slide-chart-3: var(--dd-blue-200); }
+[data-brand="hc"]  { --slide-accent: var(--hc-green);  --slide-accent-soft: var(--hc-green-10);  --slide-chart-2: var(--hc-navy);       --slide-chart-3: var(--hc-green-100); }
+[data-brand="gs"]  { --slide-accent: var(--gs-navy);   --slide-accent-soft: var(--gs-navy-10);   --slide-chart-2: var(--gs-navy-300);   --slide-chart-3: var(--gs-navy-100); }
+
 /* ── 브랜드 토큰 (md 브랜드 토큰 섹션 복붙용 블록 그대로) ── */
 
 /* 엠플랜잇 (Mplanit) */

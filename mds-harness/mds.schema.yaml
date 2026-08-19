@@ -6,7 +6,7 @@
 #   https://design-systems-chi.vercel.app/#/components
 # =============================================================================
 
-version: "2026-08-11"
+version: "2026-08-19"
 source: design-v2.md
 
 grid:
@@ -98,6 +98,19 @@ brands:
       - "로고 left 72px - 1178 컨테이너의 문서화된 예외 (§5-7)"
       - "메인 내비 hover/active 없음 (실측 확정, §5-7)"
       - "레거시 height:129 + top:-20 핵 재현 금지 - 표시값 109 직접 선언 (§5-7)"
+
+# 슬라이드 (발표자료) - design-v2.md §20. 셸은 slides.css
+slides:
+  canvas: { width: 1920, height: 1080 }
+  inset: { x: 120, y: 96 }
+  gap: 40
+  type_scale: { display: 96, title: 64, h1: 44, h2: 32, body: 24, caption: 18, meta: 16 }
+  line_height: { tight: 1.2, body: 1.55 }
+  rules:
+    - "고정 캔버스 - 뷰포트 반응형 미디어쿼리 작성 금지, 축소는 .slide-viewer의 transform: scale()만 (§20-1)"
+    - "랜딩 전용 규격(§15 그리드, §5 헤더, §6 푸터) 적용 금지 (§20-1)"
+    - "차트 색은 --slide-chart-1..5 순서대로만, 의미 색은 --color-status-* (§20-4)"
+    - "제목은 슬라이드당 1개, 본문 계층은 h2까지, 본문 텍스트 6줄 이내 권장 (§20-5)"
 
 # 금지 규칙 - stylelint.config.mjs와 동일 내용의 선언적 목록
 forbidden:

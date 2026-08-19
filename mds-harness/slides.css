@@ -1,0 +1,94 @@
+/* ==========================================================================
+   MDS Slides - 발표자료 셸 (design-v2.md §20)
+   값은 전부 tokens.css 참조. 고정 캔버스 1920x1080.
+   뷰포트 반응형 미디어쿼리 금지 - 화면 맞춤은 .slide-viewer의 scale로만 (§20-1).
+   ========================================================================== */
+
+.slide {
+  position: relative;
+  box-sizing: border-box;
+  width: var(--slide-w);
+  height: var(--slide-h);
+  padding: var(--slide-inset-y) var(--slide-inset-x);
+  background: var(--slide-bg);
+  color: var(--slide-fg);
+  font-family: var(--font-family-base);
+  display: flex;
+  flex-direction: column;
+  gap: var(--slide-gap);
+  overflow: hidden;
+}
+.slide * { box-sizing: border-box; }
+
+/* 표지 - 제목은 display 스케일 */
+.slide--cover { justify-content: center; }
+.slide--cover .slide__title { font-size: var(--slide-font-display); }
+
+/* 간지 (섹션 구분) - 강조 배경 + 흰 텍스트 */
+.slide--section {
+  justify-content: center;
+  background: var(--slide-accent);
+  color: var(--color-white-100);
+}
+.slide--section .slide__title { font-size: var(--slide-font-title); }
+.slide--section .slide__kicker { color: var(--color-white-80); }
+.slide--section .slide__subtitle { color: var(--color-white-80); }
+
+.slide__kicker {
+  margin: 0;
+  font-family: var(--font-family-en);
+  font-size: var(--slide-font-caption);
+  font-weight: var(--font-weight-body-strong);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--slide-accent);
+}
+.slide__title {
+  margin: 0;
+  font-size: var(--slide-font-h1);
+  font-weight: var(--font-weight-title-page);
+  line-height: var(--slide-line-tight);
+  letter-spacing: -0.02em;
+}
+.slide__subtitle {
+  margin: 0;
+  font-size: var(--slide-font-h2);
+  font-weight: var(--font-weight-subtitle);
+  line-height: var(--slide-line-tight);
+  color: var(--slide-fg-soft);
+}
+.slide__body {
+  flex: 1;
+  min-height: 0;
+  font-size: var(--slide-font-body);
+  line-height: var(--slide-line-body);
+}
+.slide__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-family-en);
+  font-size: var(--slide-font-meta);
+  color: var(--slide-fg-soft);
+}
+
+/* 뷰어 래퍼 - 축소 표시는 --slide-scale 하나로만 조절 */
+.slide-viewer {
+  --slide-scale: 0.5;
+  width: calc(var(--slide-w) * var(--slide-scale));
+  height: calc(var(--slide-h) * var(--slide-scale));
+  overflow: hidden;
+}
+.slide-viewer .slide {
+  transform: scale(var(--slide-scale));
+  transform-origin: top left;
+}
+
+/* PDF 출력 - 슬라이드 1장 = 1페이지 (뷰포트 반응형이 아니므로 §20-1 위반 아님) */
+@media print {
+  @page { size: 1920px 1080px; margin: 0; }
+  body { margin: 0; }
+  .slide { break-after: page; }
+  .slide-viewer { width: auto; height: auto; overflow: visible; }
+  .slide-viewer .slide { transform: none; }
+}
