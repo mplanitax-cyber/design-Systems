@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MDS Harness - 컨테이너 폭 검증</title>
+<title>MDS Harness - 컨테이너 폭 · 행간 · 드롭다운 검증</title>
 <link rel="stylesheet" href="./tokens.css">
 <link rel="stylesheet" href="./base.css">
 <style>
@@ -19,13 +19,22 @@
 </style>
 </head>
 <body>
-  <h1>MDS Harness - 브랜드 7종 .container 폭 검증</h1>
-  <p>tokens.css + base.css만 import한 상태에서 data-brand를 바꿔가며 .container의 max-width를 측정한다.</p>
+  <h1>MDS Harness - 브랜드 7종 .container 폭 · 행간 140% · 드롭다운 규격 검증</h1>
+  <p>tokens.css + base.css만 import한 상태에서 data-brand를 바꿔가며 .container의 max-width를 측정하고, 전역 행간과 .ds-select 규격을 확인한다.</p>
 
   <div class="container" id="probe"></div>
+  <p id="lh-probe" style="font-size: var(--font-size-body-md);">행간 프로브 (16px 본문)</p>
+  <button type="button" id="lh-btn">버튼 행간 프로브</button>
+  <div class="ds-select" id="sel" data-open="true">
+    <button type="button" class="ds-select__trigger" id="sel-trigger"><span class="ds-select__value">텍스트</span></button>
+    <ul class="ds-select__menu" id="sel-menu">
+      <li><button type="button" class="ds-select__item" id="sel-item" aria-selected="true">텍스트</button></li>
+      <li><button type="button" class="ds-select__item" aria-selected="false">텍스트</button></li>
+    </ul>
+  </div>
 
   <table>
-    <thead><tr><th>data-brand</th><th>기대값 (design-v2.md §15-1)</th><th>측정값</th><th>결과</th></tr></thead>
+    <thead><tr><th>검사 항목</th><th>기대값 (design-v2.md)</th><th>측정값</th><th>결과</th></tr></thead>
     <tbody id="rows"></tbody>
   </table>
   <div id="summary"></div>
@@ -57,9 +66,30 @@
     }
     document.body.removeAttribute("data-brand");
 
+    // §3 전역 행간 140% · §10-2 드롭다운 규격
+    const cs = (id) => getComputedStyle(document.getElementById(id));
+    const EXTRA = [
+      ["본문 line-height (§3 - font-size x 1.4)", (parseFloat(cs("lh-probe").fontSize) * 1.4).toFixed(1) + "px", parseFloat(cs("lh-probe").lineHeight).toFixed(1) + "px"],
+      ["버튼 line-height (§3 폼 컨트롤)", (parseFloat(cs("lh-btn").fontSize) * 1.4).toFixed(1) + "px", parseFloat(cs("lh-btn").lineHeight).toFixed(1) + "px"],
+      ["드롭다운 트리거 높이 (§10-2)", "37px", cs("sel-trigger").height],
+      ["드롭다운 최소폭 (§10-2)", "143px", cs("sel").minWidth],
+      ["드롭다운 패널 라운드 (§10-2)", "12px", cs("sel-menu").borderTopLeftRadius],
+      ["선택 항목 배경 (§10-2)", "rgb(240, 244, 251)", cs("sel-item").backgroundColor]
+    ];
+    for (const [label, expected, actual] of EXTRA) {
+      const ok = actual === expected;
+      if (ok) passCount++;
+      const tr = document.createElement("tr");
+      tr.innerHTML = "<td>" + label + "</td><td>" + expected + "</td><td>" + actual + "</td>" +
+        "<td class='" + (ok ? "pass'>PASS" : "fail'>FAIL") + "</td>";
+      rows.appendChild(tr);
+    }
+    document.getElementById("sel").dataset.open = "false";
+    const TOTAL = CASES.length + EXTRA.length;
+
     const summary = document.getElementById("summary");
-    summary.textContent = "결과: " + passCount + "/" + CASES.length + (passCount === CASES.length ? " - 전체 통과" : " - 실패 있음");
-    summary.className = passCount === CASES.length ? "pass" : "fail";
+    summary.textContent = "결과: " + passCount + "/" + TOTAL + (passCount === TOTAL ? " - 전체 통과" : " - 실패 있음");
+    summary.className = passCount === TOTAL ? "pass" : "fail";
   </script>
 </body>
 </html>

@@ -17,6 +17,7 @@
 
 - `data-brand`를 생략하면 엠플랜잇(공통 그리드 1140/40/104)이 기본값이다. 명시적으로 `mp`를 써도 같다.
 - 헤더 상태 전환은 `data-state="scrolled"` 하나로 통일한다 (MP·HC·GS, design-v2.md §5-0).
+- 행간은 전 텍스트 140% 단일값 - base.css가 `html`과 폼 컨트롤에 `--line-height-14`를 전역 적용한다. 컴포넌트에서 다른 행간 선언 금지 (§3).
 
 ```js
 // 스크롤 상태 전환 (design-v2.md §5-1 메커니즘)
@@ -24,6 +25,26 @@ window.addEventListener("scroll", () => {
   document.body.dataset.state = window.scrollY > 10 ? "scrolled" : "";
 });
 ```
+
+## 드롭다운 (Select box)
+
+design-v2.md §10-2 - 피그마 `40001645:27713` / `40001645:27982` 실측. base.css의 `.ds-select` 블록을 그대로 쓴다.
+
+```html
+<div class="ds-select" data-open="false">
+  <button type="button" class="ds-select__trigger" aria-haspopup="listbox" aria-expanded="false">
+    <span class="ds-select__value">텍스트</span>
+    <!-- icon:chevron_down_small_line (18px) -->
+  </button>
+  <ul class="ds-select__menu" role="listbox">
+    <li><button type="button" class="ds-select__item" role="option" aria-selected="true">텍스트 <!-- icon:check_small_line --></button></li>
+    <li><button type="button" class="ds-select__item" role="option" aria-selected="false">텍스트</button></li>
+  </ul>
+</div>
+```
+
+- 열림/닫힘은 `data-open` 하나로, 선택은 `aria-selected`로 표현한다. 값은 `--select-*` · `--color-border-select` · `--color-bg-selected` · `--elevation-dropdown-*` 토큰만 사용
+- 패널은 보더만 (그림자 없음, 피그마 실측). 선택 항목에만 `--elevation-dropdown-item`, 입력 중 트리거에만 `--elevation-dropdown-focus`
 
 ## 슬라이드 (발표자료)
 
@@ -44,12 +65,12 @@ window.addEventListener("scroll", () => {
 | 파일 | 역할 |
 |---|---|
 | `tokens.css` | design-v2.md의 모든 CSS 변수 (공통 + 브랜드 + 상태 + 슬라이드). 값의 원천 |
-| `base.css` | 컨테이너·그리드(§15-2), 헤더 셸(§5-0), 푸터 셸(§6-0), 반응형 타이포(§16-2), reduced-motion(§18) |
+| `base.css` | 전역 행간(§3), 컨테이너·그리드(§15-2), 헤더 셸(§5-0), 푸터 셸(§6-0), 드롭다운(§10-2), 반응형 타이포(§16-2), reduced-motion(§18) |
 | `slides.css` | 발표자료 셸(§20): 1920x1080 캔버스·표지/간지/본문 레이아웃·뷰어 스케일·인쇄 |
 | `mds.schema.yaml` | 머신 판독 스펙: 브랜드 7종 그리드·헤더·폰트·특이사항 + 금지 규칙 |
-| `stylelint.config.mjs` | 금지 규칙 강제 (HEX·soksok·z-index·box-shadow·max-width) |
+| `stylelint.config.mjs` | 금지 규칙 강제 (HEX·soksok·z-index·box-shadow·max-width·line-height) |
 | `check-no-emoji.mjs` | 이모지 검출 CI 체크 (grep 기반) |
-| `test.html` | 브랜드 7종 `.container` 폭 검증 페이지 |
+| `test.html` | 브랜드 7종 `.container` 폭 + 전역 행간 140% + 드롭다운 규격 검증 페이지 |
 
 ## 브랜드 요약 (상세는 mds.schema.yaml)
 
@@ -81,7 +102,7 @@ Pretendard Variable(공통) / Montserrat(공통 영문) / 브랜드별 Display �
 ## 검증
 
 ```bash
-# 컨테이너 폭 7종 검증 - 브라우저에서 열기
+# 컨테이너 폭 7종 · 행간 140% · 드롭다운 규격 검증 - 브라우저에서 열기
 mds-harness/test.html
 
 # 스타일 규칙 검사

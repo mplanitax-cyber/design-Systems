@@ -47,21 +47,21 @@
   margin: 0;
   font-size: var(--slide-font-h1);
   font-weight: var(--font-weight-title-page);
-  line-height: var(--slide-line-tight);
+  line-height: var(--line-height-14);
   letter-spacing: -0.02em;
 }
 .slide__subtitle {
   margin: 0;
   font-size: var(--slide-font-h2);
   font-weight: var(--font-weight-subtitle);
-  line-height: var(--slide-line-tight);
+  line-height: var(--line-height-14);
   color: var(--slide-fg-soft);
 }
 .slide__body {
   flex: 1;
   min-height: 0;
   font-size: var(--slide-font-body);
-  line-height: var(--slide-line-body);
+  line-height: var(--line-height-14);
 }
 .slide__footer {
   display: flex;

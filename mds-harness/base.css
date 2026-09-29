@@ -1,10 +1,15 @@
 /* ==========================================================================
    MDS Harness - base.css
    유일한 값 출처: design-v2.md. tokens.css 다음에 import한다.
-   구성: §15-2 컨테이너·그리드 / §5-0 헤더 셸 / §6-0 푸터 셸 /
-        §16-2 반응형 타이포 / §18 prefers-reduced-motion
+   구성: §3 전역 행간 / §15-2 컨테이너·그리드 / §5-0 헤더 셸 / §6-0 푸터 셸 /
+        §10-2 드롭다운 / §16-2 반응형 타이포 / §18 prefers-reduced-motion
    아이콘: 공통 아이콘 라이브러리 네이밍 참조 (기본 24px / currentColor)
    ========================================================================== */
+
+/* ── §3. 전역 행간 - 모든 텍스트 140% (--line-height-14) 단일값 ──
+   폼 컨트롤은 line-height를 상속하지 않으므로 명시. 개별 컴포넌트에서 다른 행간 선언 금지 */
+html { line-height: var(--line-height-14); }
+button, input, select, textarea { line-height: var(--line-height-14); }
 
 /* ── §15-2. 컨테이너 · 섹션 · 그리드 ── */
 .container { width: 100%; max-width: var(--container-max); margin: 0 auto; padding-inline: var(--page-inset); }
@@ -71,6 +76,61 @@
   padding-inline: var(--page-inset);
   padding-block: var(--footer-pad-y, 50px);
 }
+
+/* ── §10-2. 드롭다운 (Select box) - 피그마 40001645:27713 / 27982 ──
+   아이콘: 트리거 chevron_down_small_line · 선택 항목 check_small_line (18px, currentColor)
+   열림/닫힘은 .ds-select[data-open] 하나로, 선택은 .ds-select__item[aria-selected]로 표현 */
+.ds-select { position: relative; display: inline-block; min-width: var(--select-min-width); }
+.ds-select__trigger {
+  display: inline-flex; align-items: center; justify-content: space-between; gap: var(--spacing-8);
+  width: 100%; height: var(--select-height);
+  padding: 0 var(--spacing-8) 0 var(--spacing-16);
+  background: var(--color-white-100);
+  border: 1px solid var(--color-border-select);
+  border-radius: var(--radius-8);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-body-sm);
+  font-weight: var(--font-weight-body-strong);
+  line-height: var(--line-height-14);
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--color-gray-55);
+  cursor: pointer; text-align: left;
+  transition: background var(--duration-fast) var(--ease-standard), box-shadow var(--duration-fast) var(--ease-standard);
+}
+.ds-select__value { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ds-select__trigger svg { width: var(--select-icon); height: var(--select-icon); flex: 0 0 auto; transition: transform var(--duration-fast) var(--ease-standard); }
+.ds-select[data-open="true"] .ds-select__trigger { background: var(--color-gray-f5); }
+.ds-select[data-open="true"] .ds-select__trigger svg { transform: rotate(180deg); }
+.ds-select__trigger:focus-visible, .ds-select--typing .ds-select__trigger { outline: none; box-shadow: var(--elevation-dropdown-focus); }
+.ds-select__trigger:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.ds-select__menu {
+  position: absolute; top: calc(100% + var(--spacing-4)); left: 0; z-index: var(--z-dropdown);
+  min-width: 100%; width: max-content;
+  display: none; flex-direction: column; gap: var(--spacing-4);
+  margin: 0; padding: var(--spacing-6); list-style: none;
+  background: var(--color-white-100);
+  border: 1px solid var(--color-border-menu);
+  border-radius: var(--radius-12);
+}
+.ds-select[data-open="true"] .ds-select__menu { display: flex; }
+
+.ds-select__item {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--spacing-12);
+  width: 100%; padding: var(--spacing-8) var(--spacing-8) var(--spacing-8) var(--spacing-16);
+  border: 0; border-radius: var(--radius-8); background: transparent;
+  font: inherit; line-height: var(--line-height-14); letter-spacing: var(--letter-spacing-tight);
+  color: var(--color-gray-55); cursor: pointer; text-align: left;
+  transition: background var(--duration-fast) var(--ease-standard), color var(--duration-fast) var(--ease-standard);
+}
+.ds-select__item:hover { background: var(--color-gray-f5); }
+.ds-select__item svg { width: var(--select-icon); height: var(--select-icon); flex: 0 0 auto; display: none; }
+.ds-select__item[aria-selected="true"] {
+  background: var(--color-bg-selected);
+  color: var(--color-mp-azure-01);
+  box-shadow: var(--elevation-dropdown-item);
+}
+.ds-select__item[aria-selected="true"] svg { display: block; }
 
 /* ── §16-2. 반응형 타이포 (:root 오버라이드 - 컴포넌트 무수정) ── */
 @media (max-width: 1279px) { :root {

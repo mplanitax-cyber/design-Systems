@@ -1,6 +1,7 @@
 /* =============================================================================
    MDS Harness - stylelint.config.mjs
    유일한 값 출처: design-v2.md. 규칙 근거는 mds.schema.yaml의 forbidden 목록과 동일.
+   금지: 임의 HEX · --soksok-* · 토큰 밖 z-index/box-shadow/max-width · 숫자 line-height
    사용: npx stylelint <대상 css 글롭> --config mds-harness/stylelint.config.mjs
    (전체 검사 글롭 예시는 README.md 참조 - 주석 안에 별표 글롭을 쓰면 블록 주석이 깨져 생략)
    ============================================================================= */
@@ -23,8 +24,11 @@ export default {
         /* 3) z-index는 --z-* 토큰만 허용, 9999 금지 (§17) */
         "z-index": ["/^var\\(--z-(base|sticky|header|dropdown|overlay|modal|toast)\\)$/", "auto"],
 
-        /* 4) box-shadow는 elevation 토큰과 GS 헤더 그림자만 (§17, §5-7) */
-        "box-shadow": ["/^var\\(--elevation-[0-4]\\)$/", "/^var\\(--gs-header-shadow\\)$/", "none"],
+        /* 4) box-shadow는 elevation 토큰(드롭다운 항목/포커스 포함)과 GS 헤더 그림자만 (§17, §10-2, §5-7) */
+        "box-shadow": ["/^var\\(--elevation-[0-4]\\)$/", "/^var\\(--elevation-dropdown-(item|focus)\\)$/", "/^var\\(--gs-header-shadow\\)$/", "none"],
+
+        /* 6) line-height는 전 텍스트 140% 단일값 - --line-height-14 토큰 또는 inherit만 (§3) */
+        "line-height": ["/^var\\(--line-height-14\\)$/", "inherit"],
 
         /* 5) max-width 컨테이너 값 화이트리스트 (§15-1: 1140/1280/1380/1178/640/760/1440) */
         "max-width": [
@@ -33,7 +37,7 @@ export default {
           "none", "100%"
         ]
       },
-      { message: "토큰 밖 임의값 금지 - z-index는 --z-*, box-shadow는 --elevation-*, max-width는 컨테이너 화이트리스트만 (design-v2.md §15-1, §17)" }
+      { message: "토큰 밖 임의값 금지 - z-index는 --z-*, box-shadow는 --elevation-*, max-width는 컨테이너 화이트리스트, line-height는 --line-height-14만 (design-v2.md §3, §15-1, §17)" }
     ]
   },
 

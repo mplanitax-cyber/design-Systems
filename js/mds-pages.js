@@ -120,11 +120,11 @@ function PageOverview({ go }) {
           <h2 style={{fontSize: 28, margin: 0, fontWeight: 700, letterSpacing: "-0.02em"}}>Components</h2>
           <span className="num">04 / LIBRARY</span>
         </div>
-        <p className="section-desc" style={{marginTop: 0, marginBottom: 24}}>제품 어디에나 쓸 수 있도록 정제된 12개의 핵심 컴포넌트.</p>
+        <p className="section-desc" style={{marginTop: 0, marginBottom: 24}}>제품 어디에나 쓸 수 있도록 정제된 13개의 핵심 컴포넌트.</p>
         <div className="cmp-overview">
           {[
             ["Header","v0.0.0","header"],["Footer","v0.0.1","footer"],["Tabs","v0.0.0","tabs"],["Menu","v0.0.0","menu"],
-            ["Button","v0.0.0","button"],["Text field","v0.0.1","input"],["Checkbox","v0.0.0","checkbox"],["Toggle","v0.0.0","toggle"],
+            ["Button","v0.0.0","button"],["Text field","v0.0.1","input"],["Dropdown","v0.0.1","dropdown"],["Checkbox","v0.0.0","checkbox"],["Toggle","v0.0.0","toggle"],
             ["Table","v0.00","table"],["Cards","v0.0.0","card"],["Popup","v0.0.0","popup"],["Logo","v0.0.0",null]
           ].map(([n,v,anchor]) => (
             <div key={n} className="cmp-tile" onClick={() => anchor ? go("components", anchor) : go("logo")}>
@@ -478,6 +478,7 @@ function PageComponents({ copy }) {
     {id: "menu", label: "Menu"},
     {id: "button", label: "Button"},
     {id: "input", label: "Text field"},
+    {id: "dropdown", label: "Dropdown"},
     {id: "checkbox", label: "Checkbox"},
     {id: "toggle", label: "Toggle"},
     {id: "table", label: "Table"},
@@ -496,7 +497,7 @@ function PageComponents({ copy }) {
       <div>
         <PageHeader eyebrow="04 / LIBRARY" title="Components"
           version="v0.0.0" updated="2026.04.30"
-          lede="제품 어디에서나 일관된 결을 만드는 12개의 핵심 컴포넌트." />
+          lede="제품 어디에서나 일관된 결을 만드는 13개의 핵심 컴포넌트." />
 
         <Section id="header" num="01" title="Header" desc="앱과 제품 마케팅 페이지에 두루 쓰이는 헤더. 다크 / 화이트 두 변종.">
           <CmpCard title="Default · Dark" tag="variant=default">
@@ -613,6 +614,30 @@ function PageComponents({ copy }) {
           <CmpCard title="Boxed · Search" tag="variant=deep">
             <div style={{width: 360}}>
               <input className="input-deep" placeholder="검색어를 입력하세요" />
+            </div>
+          </CmpCard>
+        </Section>
+
+        <Section id="dropdown" num="06-1" title="Dropdown" desc="셀렉트 박스. 트리거 37px · 패널 12px 라운드 · 선택 항목 강조. 하네스 .ds-select (design-v2.md §10-2).">
+          <CmpCard title="Trigger states" tag="closed / open / typing">
+            <div style={{display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap"}}>
+              <button type="button" className="mdmenu-trigger open" style={{height: 37, minWidth: 143, justifyContent: "space-between", background: "#fff"}}>
+                텍스트 <svg className={"mdmenu-chevron"} width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M5 7.5L9 11.5L13 7.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              </button>
+              <button type="button" className="mdmenu-trigger open" style={{height: 37, minWidth: 143, justifyContent: "space-between"}}>
+                텍스트 <svg className={"mdmenu-chevron up"} width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M5 7.5L9 11.5L13 7.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              </button>
+              <button type="button" className="mdmenu-trigger open" style={{height: 37, width: 143, background: "#fff", boxShadow: "0 2px 8px rgba(6,78,200,0.25)", padding: 9}}>
+                <span style={{overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap"}}>입력중입니다입력중입니다입력중입니다</span>
+              </button>
+            </div>
+          </CmpCard>
+          <CmpCard title="Menu" tag="selected + check_small_line">
+            <div className="mdmenu-list" style={{position: "static", width: 143, boxShadow: "none"}}>
+              <button type="button" className="mdmenu-item selected">텍스트 <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 9.5L7.5 13L14 5.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg></button>
+              <button type="button" className="mdmenu-item">텍스트</button>
+              <button type="button" className="mdmenu-item">텍스트</button>
+              <button type="button" className="mdmenu-item">텍스트</button>
             </div>
           </CmpCard>
         </Section>

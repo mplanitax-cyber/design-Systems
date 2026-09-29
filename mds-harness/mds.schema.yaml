@@ -6,8 +6,14 @@
 #   https://design-systems-chi.vercel.app/#/components
 # =============================================================================
 
-version: "2026-08-19"
+version: "2026-09-29"
 source: design-v2.md
+
+typography:
+  # design-v2.md §3. 행간은 전 텍스트 단일값 - 다른 행간 값 선언 금지
+  line_height: 1.4
+  line_height_token: --line-height-14
+  letter_spacing_tight: -0.01em
 
 grid:
   # 공통 그리드 = 엠플랜잇 (design-v2.md §15-1). 전 브랜드 12컬럼 · 24px 거터 고정.
@@ -105,12 +111,46 @@ slides:
   inset: { x: 120, y: 96 }
   gap: 40
   type_scale: { display: 96, title: 64, h1: 44, h2: 32, body: 24, caption: 18, meta: 16 }
-  line_height: { tight: 1.2, body: 1.55 }
+  line_height: 1.4                  # 랜딩과 동일 - --line-height-14 하나만 (§20-3)
   rules:
     - "고정 캔버스 - 뷰포트 반응형 미디어쿼리 작성 금지, 축소는 .slide-viewer의 transform: scale()만 (§20-1)"
     - "랜딩 전용 규격(§15 그리드, §5 헤더, §6 푸터) 적용 금지 (§20-1)"
     - "차트 색은 --slide-chart-1..5 순서대로만, 의미 색은 --color-status-* (§20-4)"
     - "제목은 슬라이드당 1개, 본문 계층은 h2까지, 본문 텍스트 6줄 이내 권장 (§20-5)"
+
+# 드롭다운 (Select box) - design-v2.md §10-2. 셸은 base.css .ds-select
+components:
+  dropdown:
+    figma: ["40001645:27713", "40001645:27982"]
+    trigger:
+      height: 37
+      min_width: 143
+      padding: { left: 16, right: 8 }
+      border: { width: 1, color: --color-border-select }
+      radius: 8
+      text: { size: 14, weight: 700, color: --color-gray-55, line_height: 1.4, letter_spacing: -0.01em }
+      icon: { name: chevron_down_small_line, size: 18, open: "rotate 180deg" }
+      states:
+        open: { background: --color-gray-f5 }
+        typing: { shadow: --elevation-dropdown-focus, overflow: ellipsis }
+        disabled: { opacity: 0.4 }
+    menu:
+      offset: 4
+      padding: 6
+      gap: 4
+      border: { width: 1, color: --color-border-menu }
+      radius: 12
+      shadow: none                    # 피그마 실측 - 보더만
+      z_index: --z-dropdown
+    item:
+      padding: { top: 8, right: 8, bottom: 8, left: 16 }
+      radius: 8
+      hover: { background: --color-gray-f5 }
+      selected:
+        background: --color-bg-selected
+        color: --color-mp-azure-01
+        shadow: --elevation-dropdown-item
+        icon: { name: check_small_line, size: 18 }
 
 # 금지 규칙 - stylelint.config.mjs와 동일 내용의 선언적 목록
 forbidden:
@@ -121,13 +161,15 @@ forbidden:
   - id: z-index-tokens-only
     rule: "z-index는 --z-* 토큰만 허용. 9999 금지 (§17)"
   - id: box-shadow-tokens-only
-    rule: "box-shadow는 --elevation-0..4, --gs-header-shadow만 허용 (§17, §5-7)"
+    rule: "box-shadow는 --elevation-0..4, --elevation-dropdown-item/focus, --gs-header-shadow만 허용 (§17, §10-2, §5-7)"
   - id: container-width-whitelist
     rule: "max-width 컨테이너 값은 1140/1280/1380/1178/640/760/1440 화이트리스트만 (§15-1)"
   - id: no-emoji
     rule: "이모지 절대 금지 (코드·주석·문서 전부). 아이콘은 공통 라이브러리 네이밍으로 참조 표기"
   - id: no-min-max-mix
     rule: "미디어쿼리는 max-width 하향식(1279 -> 1023 -> 767 -> 479)만. min/max 혼용 금지 (§16-1)"
+  - id: line-height-14-only
+    rule: "line-height는 var(--line-height-14) 또는 inherit만 허용. 숫자 행간(1.2/1.6 등) 직접 선언 금지 (§3)"
   - id: no-arbitrary-margin
     rule: "섹션 간격은 .section padding-block으로만. 개별 요소 임의 margin 금지 (§15-3)"
 
@@ -141,3 +183,5 @@ icons:
     search: search_line
     phone: "phone_line (아웃라인) / phone_filled (필)"
     close: "close_line / close_circle_line"
+    dropdown_arrow: chevron_down_small_line
+    dropdown_check: check_small_line
