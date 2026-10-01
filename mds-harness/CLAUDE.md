@@ -15,8 +15,10 @@
 ## 로고
 - 로고는 `logos/`의 파일을 `<img>`로 가져다 쓴다. 다시 그리거나 비슷하게 만들거나 텍스트로 대체하지 않는다.
 - 엠플랜잇: 밝은 배경 `logos/mplanit.svg` · 어두운 배경 `logos/mplanit-white.svg`
+- 흥국화재: `logos/hg.svg` (밝은 배경)
+- AIA: `logos/aia-white.svg` (흰색 로고 - AIA 레드 `--color-aia-red` 또는 어두운 배경 위 전용, 밝은 배경 금지)
 - 지셀라 `gselah.png` · 쏙쏙 `soksok.png` · 디디다 `ddda.png` (밝은 배경) · 헬스케어 `prohealth-white.png` (어두운 배경 전용)
-- 흥국화재·AIA 로고 파일은 아직 동봉되지 않았다. 파일이 없으면 임의로 그리지 말고 사용자에게 파일을 요청한다.
+- 웰컴저축은행 로고는 동봉되지 않았다. 목록에 없는 로고는 임의로 그리지 말고 사용자에게 파일을 요청한다.
 - 헤더에는 `.hd__logo` 슬롯에 넣는다: `<a class="hd__logo"><img src="mds-harness/logos/mplanit.svg" alt="mplanit" height="..."></a>` (높이는 브랜드 헤더 토큰 기준).
 
 ## 금지

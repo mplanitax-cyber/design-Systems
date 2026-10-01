@@ -92,6 +92,8 @@
     "fonts/WelcomeBM-Bold.woff2",
     "logos/mplanit.svg",
     "logos/mplanit-white.svg",
+    "logos/hg.svg",
+    "logos/aia-white.svg",
     "logos/gselah.png",
     "logos/soksok.png",
     "logos/ddda.png",
