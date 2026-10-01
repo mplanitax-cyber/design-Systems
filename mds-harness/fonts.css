@@ -1,0 +1,28 @@
+/* ==========================================================================
+   MDS Harness - fonts.css
+   폰트 파일을 하네스에 동봉해 설치 여부와 무관하게 동일하게 렌더링한다.
+   (tokens.css는 폰트를 이름으로만 지정 - 파일 로드는 이 파일이 담당)
+   base.css가 @import 하므로 별도 link 불필요. 경로는 mds-harness/fonts/ 기준.
+   ========================================================================== */
+
+/* 공통 본문 (--font-family-base) */
+@font-face { font-family: 'Pretendard Variable'; font-weight: 45 920; font-display: swap;
+  src: url("fonts/PretendardVariable.woff2") format('woff2-variations'); }
+
+/* 공통 영문·숫자 (--font-family-en) - 라틴 서브셋 */
+@font-face { font-family: 'Montserrat'; font-weight: 100 900; font-display: swap;
+  src: url("fonts/Montserrat-Variable-latin.woff2") format('woff2-variations'); }
+
+/* 브랜드 Display - AIA·쏙쏙 (--font-family-paperlogy) */
+@font-face { font-family: 'Paperlogy'; font-weight: 400; font-display: swap; src: url("fonts/Paperlogy-Regular.woff2") format('woff2'); }
+@font-face { font-family: 'Paperlogy'; font-weight: 500; font-display: swap; src: url("fonts/Paperlogy-Medium.woff2") format('woff2'); }
+@font-face { font-family: 'Paperlogy'; font-weight: 600; font-display: swap; src: url("fonts/Paperlogy-SemiBold.woff2") format('woff2'); }
+@font-face { font-family: 'Paperlogy'; font-weight: 700; font-display: swap; src: url("fonts/Paperlogy-Bold.woff2") format('woff2'); }
+
+/* 브랜드 Display - 흥국화재 */
+@font-face { font-family: 'GmarketSans'; font-weight: 500; font-display: swap; src: url("fonts/GmarketSans-Medium.woff2") format('woff2'); }
+@font-face { font-family: 'GmarketSans'; font-weight: 700; font-display: swap; src: url("fonts/GmarketSans-Bold.woff2") format('woff2'); }
+
+/* 브랜드 Display - 웰컴 */
+@font-face { font-family: 'WelcomeBM'; font-weight: 400; font-display: swap; src: url("fonts/WelcomeBM-Regular.woff2") format('woff2'); }
+@font-face { font-family: 'WelcomeBM'; font-weight: 700; font-display: swap; src: url("fonts/WelcomeBM-Bold.woff2") format('woff2'); }

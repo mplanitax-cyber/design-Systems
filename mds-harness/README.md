@@ -66,6 +66,9 @@ design-v2.md §10-2 - 피그마 `40001645:27713` / `40001645:27982` 실측. base
 |---|---|
 | `tokens.css` | design-v2.md의 모든 CSS 변수 (공통 + 브랜드 + 상태 + 슬라이드). 값의 원천 |
 | `base.css` | 전역 행간(§3), 컨테이너·그리드(§15-2), 헤더 셸(§5-0), 푸터 셸(§6-0), 드롭다운(§10-2), 반응형 타이포(§16-2), reduced-motion(§18) |
+| `fonts.css` + `fonts/` | 폰트 @font-face와 woff2 파일 동봉 (Pretendard Variable·Montserrat·Paperlogy·Gmarket Sans·WelcomeBM). base.css·slides.css가 자동 import하므로 설치 여부와 무관하게 동일 렌더링 |
+| `logos/` | 엠플랜잇(SVG, 밝은/어두운 배경)과 지셀라·쏙쏙·디디다·헬스케어 로고. 헤더 `.hd__logo` 슬롯에 `<img>`로 사용 (흥국화재·AIA는 미동봉) |
+| `CLAUDE.md` | AI용 작업 규칙 (하네스 로드·폰트·로고·금지 규칙). 프로젝트 루트 CLAUDE.md에서 `@mds-harness/CLAUDE.md`로 불러오면 매번 지시하지 않아도 적용됨 |
 | `slides.css` | 발표자료 셸(§20): 1920x1080 캔버스·표지/간지/본문 레이아웃·뷰어 스케일·인쇄 |
 | `mds.schema.yaml` | 머신 판독 스펙: 브랜드 7종 그리드·헤더·폰트·특이사항 + 금지 규칙 |
 | `stylelint.config.mjs` | 금지 규칙 강제 (HEX·soksok·z-index·box-shadow·max-width·line-height) |
@@ -96,7 +99,8 @@ design-v2.md §10-2 - 피그마 `40001645:27713` / `40001645:27982` 실측. base
 
 ## 폰트
 
-외부 CDN 금지 - 로컬 woff2 파일만 로드한다 (design-v2.md §13 로드 코드 참조).
+외부 CDN 금지 - 하네스에 동봉된 `fonts/` woff2만 로드한다 (`fonts.css`가 @font-face 선언, base.css·slides.css가 자동 import).
+`mds-harness/` 폴더째 옮기면 폰트도 같이 가며, `fonts/` 경로를 바꾸면 폰트가 기본 sans-serif로 떨어진다.
 Pretendard Variable(공통) / Montserrat(공통 영문) / 브랜드별 Display 폰트는 §13과 각 브랜드 Typography 표를 따른다.
 
 ## 검증
