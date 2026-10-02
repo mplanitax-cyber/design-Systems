@@ -71,6 +71,8 @@ design-v2.md §10-2 - 피그마 `40001645:27713` / `40001645:27982` 실측. base
 | `logos/` | 엠플랜잇(SVG, 밝은/어두운 배경)·흥국화재(SVG)·AIA(SVG, 흰색 - 레드/어두운 배경 전용)와 지셀라·쏙쏙·디디다·헬스케어 로고. 헤더 `.hd__logo` 슬롯에 `<img>`로 사용 (웰컴저축은행은 미동봉) |
 | `CLAUDE.md` | AI용 작업 규칙 (하네스 로드·폰트·로고·금지 규칙). 프로젝트 루트 CLAUDE.md에서 `@mds-harness/CLAUDE.md`로 불러오면 매번 지시하지 않아도 적용됨 |
 | `slides.css` | 발표자료 셸(§20): 1920x1080 캔버스·표지/간지/본문 레이아웃·뷰어 스케일·인쇄 |
+| `tokens.json` · `figma-variables.json` | tokens.css에서 자동 생성한 파생물 (피그마 변수 동기화용). 손으로 수정 금지 - 재생성만 |
+| `tools/tokens-sync.mjs` | tokens.css -> tokens.json · figma-variables.json 재생성. `--check`로 정합 검사 (diff 0건이면 통과) |
 | `mds.schema.yaml` | 머신 판독 스펙: 브랜드 7종 그리드·헤더·폰트·특이사항 + 금지 규칙 |
 | `stylelint.config.mjs` | 금지 규칙 강제 (HEX·soksok·z-index·box-shadow·max-width·line-height) |
 | `check-no-emoji.mjs` | 이모지 검출 CI 체크 (grep 기반) |

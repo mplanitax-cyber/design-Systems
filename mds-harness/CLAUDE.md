@@ -12,6 +12,7 @@
 - 색·크기·간격·행간 등 모든 스타일 값은 `tokens.css` 변수 참조만 허용. 임의 HEX·px 값을 새로 만들지 않는다.
 - 행간은 전 텍스트 140%(`--line-height-14`) 단일값. 컴포넌트에서 line-height를 따로 선언하지 않는다.
 - 하네스에 없는 값이 필요하면 임의로 만들지 말고 사용자에게 알린다 (새 값은 design-v2.md에 먼저 추가).
+- 값 변경 순서: design-v2.md -> tokens.css -> `node mds-harness/tools/tokens-sync.mjs` (tokens.json · figma-variables.json 재생성). tokens.json · figma-variables.json은 손으로 고치지 않는다.
 
 ## 로고
 - 로고는 `logos/`의 파일을 `<img>`로 가져다 쓴다. 다시 그리거나 비슷하게 만들거나 텍스트로 대체하지 않는다.
