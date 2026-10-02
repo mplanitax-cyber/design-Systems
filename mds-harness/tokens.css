@@ -117,7 +117,7 @@
   /* ── 타이포그래피 ── */
   --font-family-base:      'Pretendard Variable', sans-serif;
   --font-family-en:        'Montserrat', sans-serif;
-  --font-family-paperlogy: 'Paperlogy', sans-serif;  /* AIA 전용 */
+  --font-family-paperlogy: 'Paperlogy', sans-serif;  /* AIA·쏙쏙 Display + 발표자료(§20) */
 
   --font-size-title-hero:    72px;  --font-weight-title-hero: 700;
   --font-size-title-page-sm: 40px;
@@ -230,6 +230,7 @@
   --slide-font-body:    24px;  /* 본문 */
   --slide-font-caption: 18px;  /* 캡션 - 출처 */
   --slide-font-meta:    16px;  /* 페이지 번호 - 푸터 메타 */
+  --slide-font-family:  var(--font-family-paperlogy);  /* 발표자료 전 텍스트 - 랜딩 UI는 Pretendard 유지 (§20-1) */
   /* 행간은 랜딩과 동일 - 전 텍스트 var(--line-height-14) 하나만 (§3, §20-3) */
 
   --slide-bg: var(--color-white-100);

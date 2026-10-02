@@ -2,7 +2,7 @@
 
 /* ==========================================================================
    MDS Slides - 발표자료 셸 (design-v2.md §20)
-   값은 전부 tokens.css 참조. 고정 캔버스 1920x1080.
+   값은 전부 tokens.css 참조. 고정 캔버스 1920x1080. 폰트는 Paperlogy 단일(--slide-font-family).
    뷰포트 반응형 미디어쿼리 금지 - 화면 맞춤은 .slide-viewer의 scale로만 (§20-1).
    ========================================================================== */
 
@@ -14,7 +14,7 @@
   padding: var(--slide-inset-y) var(--slide-inset-x);
   background: var(--slide-bg);
   color: var(--slide-fg);
-  font-family: var(--font-family-base);
+  font-family: var(--slide-font-family);
   display: flex;
   flex-direction: column;
   gap: var(--slide-gap);
@@ -38,7 +38,7 @@
 
 .slide__kicker {
   margin: 0;
-  font-family: var(--font-family-en);
+  font-family: var(--slide-font-family);
   font-size: var(--slide-font-caption);
   font-weight: var(--font-weight-body-strong);
   letter-spacing: 0.12em;
@@ -69,7 +69,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-family: var(--font-family-en);
+  font-family: var(--slide-font-family);
   font-size: var(--slide-font-meta);
   color: var(--slide-fg-soft);
 }
