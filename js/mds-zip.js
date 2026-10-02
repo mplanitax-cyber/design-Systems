@@ -86,6 +86,7 @@
     "fonts/Paperlogy-Medium.woff2",
     "fonts/Paperlogy-SemiBold.woff2",
     "fonts/Paperlogy-Bold.woff2",
+    "fonts/Paperlogy-ExtraBold.woff2",
     "fonts/GmarketSans-Medium.woff2",
     "fonts/GmarketSans-Bold.woff2",
     "fonts/WelcomeBM-Regular.woff2",

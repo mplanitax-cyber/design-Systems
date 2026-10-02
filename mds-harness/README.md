@@ -59,7 +59,7 @@ design-v2.md §10-2 - 피그마 `40001645:27713` / `40001645:27982` 실측. base
 
 - 고정 캔버스 1920x1080 - 뷰포트 반응형 미디어쿼리 금지, 축소는 `.slide-viewer`의 scale로만
 - 값은 tokens.css의 `--slide-*` 토큰만 사용 (타입 스케일·여백·차트 팔레트 포함)
-- 폰트는 Paperlogy 단일(`--slide-font-family`, 400~700). 랜딩 UI는 Pretendard + Montserrat 그대로
+- 폰트는 Paperlogy 단일(`--slide-font-family`, 400~800). 랜딩 UI는 Pretendard + Montserrat 그대로
 
 ## 파일 구성
 

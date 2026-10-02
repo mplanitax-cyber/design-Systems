@@ -5,7 +5,7 @@
 ## 필수 로드
 - `tokens.css` -> `base.css` 순서로 link. 발표자료는 `slides.css`도 추가. `data-brand`로 브랜드 지정 (mp | hg | aia | ss | dd | hc | gs).
 - 폰트는 `fonts.css`가 자동 로드(base.css·slides.css가 import). 폰트 파일 경로(`fonts/`)를 바꾸거나 외부 CDN·시스템 폰트를 쓰지 않는다.
-- 폰트: 랜딩 UI는 Pretendard(`--font-family-base`) + Montserrat(`--font-family-en`), 발표자료(slides)는 Paperlogy 단일(`--slide-font-family`, 400~700 - 800 이상 금지).
+- 폰트: 랜딩 UI는 Pretendard(`--font-family-base`) + Montserrat(`--font-family-en`), 발표자료(slides)는 Paperlogy 단일(`--slide-font-family`, 400~800 - 900(Black) 미동봉이라 금지).
 - 폰트 이름을 CSS에 직접 쓰지 말고 위 변수만 쓴다.
 
 ## 값

@@ -112,7 +112,7 @@ slides:
   gap: 40
   type_scale: { display: 96, title: 64, h1: 44, h2: 32, body: 24, caption: 18, meta: 16 }
   line_height: 1.4                  # 랜딩과 동일 - --line-height-14 하나만 (§20-3)
-  font: "Paperlogy 400~700 단일 (--slide-font-family) - 랜딩 UI는 Pretendard 유지 (§20-1)"
+  font: "Paperlogy 400~800 단일 (--slide-font-family) - 랜딩 UI는 Pretendard 유지 (§20-1)"
   rules:
     - "고정 캔버스 - 뷰포트 반응형 미디어쿼리 작성 금지, 축소는 .slide-viewer의 transform: scale()만 (§20-1)"
     - "랜딩 전용 규격(§15 그리드, §5 헤더, §6 푸터) 적용 금지 (§20-1)"
