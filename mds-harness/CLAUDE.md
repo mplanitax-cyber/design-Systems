@@ -16,7 +16,9 @@
 
 ## 로고
 - 로고는 `logos/`의 파일을 `<img>`로 가져다 쓴다. 다시 그리거나 비슷하게 만들거나 텍스트로 대체하지 않는다.
-- 엠플랜잇: 밝은 배경 `logos/mplanit.svg` · 어두운 배경 `logos/mplanit-white.svg`
+- 엠플랜잇: 밝은 배경 `logos/mplanit.svg` · 컬러·어두운 배경 `logos/mplanit-white.svg`(전부 흰색, 슬로건 포함 - 강조색 배경·간지 슬라이드에도 사용) · 검정·네이비 배경 `logos/mplanit-on-dark.svg`(불꽃 컬러 + 흰 글자 - 강조색 배경에서는 불꽃이 묻히므로 금지)
+- AI LAB: 밝은 배경 `logos/ailab.svg` · 컬러·어두운 배경 `logos/ailab-white.svg`
+- 배너핏(제품): `logos/bannerfit.svg` (밝은 배경, 3D 불꽃 이미지 포함 약 220KB)
 - 흥국화재: `logos/hg.svg` (밝은 배경)
 - AIA: 밝은 배경 `logos/aia.svg`(AIA생명 한글, 기본) · `logos/aia-eng.svg`(영문 슬로건) · `logos/aia-symbol.svg`(심볼 단독) / AIA 레드·어두운 배경 `logos/aia-white.svg`(흰색 전용)
 - 지셀라 `gselah.png` · 쏙쏙 `soksok.png` · 디디다 `ddda.png` (밝은 배경) · 헬스케어 `prohealth-white.png` (어두운 배경 전용)

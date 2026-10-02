@@ -118,6 +118,8 @@ slides:
     - "랜딩 전용 규격(§15 그리드, §5 헤더, §6 푸터) 적용 금지 (§20-1)"
     - "차트 색은 --slide-chart-1..5 순서대로만, 의미 색은 --color-status-* (§20-4)"
     - "제목은 슬라이드당 1개, 본문 계층은 h2까지, 본문 텍스트 6줄 이내 권장 (§20-5)"
+    - "한글 줄바꿈은 어절 단위 - .slide에 word-break: keep-all 기본 적용 (§20-5)"
+    - "figure·blockquote·dd 기본 여백은 .slide 안에서 0 초기화 (§20-5)"
 
 # 드롭다운 (Select box) - design-v2.md §10-2. 셸은 base.css .ds-select
 components:
