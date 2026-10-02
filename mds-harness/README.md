@@ -68,7 +68,7 @@ design-v2.md §10-2 - 피그마 `40001645:27713` / `40001645:27982` 실측. base
 | `tokens.css` | design-v2.md의 모든 CSS 변수 (공통 + 브랜드 + 상태 + 슬라이드). 값의 원천 |
 | `base.css` | 전역 행간(§3), 컨테이너·그리드(§15-2), 헤더 셸(§5-0), 푸터 셸(§6-0), 드롭다운(§10-2), 반응형 타이포(§16-2), reduced-motion(§18) |
 | `fonts.css` + `fonts/` | 폰트 @font-face와 woff2 파일 동봉 (Pretendard Variable·Montserrat·Paperlogy·Gmarket Sans·WelcomeBM). base.css·slides.css가 자동 import하므로 설치 여부와 무관하게 동일 렌더링 |
-| `logos/` | 엠플랜잇(SVG, 밝은/어두운 배경)·흥국화재(SVG)·AIA(SVG, 흰색 - 레드/어두운 배경 전용)와 지셀라·쏙쏙·디디다·헬스케어 로고. 헤더 `.hd__logo` 슬롯에 `<img>`로 사용 (웰컴저축은행은 미동봉) |
+| `logos/` | 엠플랜잇(SVG, 밝은/어두운 배경)·흥국화재(SVG)·AIA(SVG 컬러 3종 + 흰색 1종)·웰컴저축은행(SVG)과 지셀라·쏙쏙·디디다·헬스케어 로고. 헤더 `.hd__logo` 슬롯에 `<img>`로 사용 |
 | `CLAUDE.md` | AI용 작업 규칙 (하네스 로드·폰트·로고·금지 규칙). 프로젝트 루트 CLAUDE.md에서 `@mds-harness/CLAUDE.md`로 불러오면 매번 지시하지 않아도 적용됨 |
 | `slides.css` | 발표자료 셸(§20): 1920x1080 캔버스·표지/간지/본문 레이아웃·뷰어 스케일·인쇄 |
 | `tokens.json` · `figma-variables.json` | tokens.css에서 자동 생성한 파생물 (피그마 변수 동기화용). 손으로 수정 금지 - 재생성만 |
