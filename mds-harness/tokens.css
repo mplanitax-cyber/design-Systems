@@ -78,12 +78,15 @@
   /* ── 공통 알파 ── */
   --color-white-100: #FFFFFF;
   --color-white-80:  #FFFFFFCC;
+  --color-white-60:  #FFFFFF99;  /* disabled 오버레이 (§4-0) */
   --color-white-40:  #FFFFFF66;
   --color-white-20:  #FFFFFF33;
   --color-white-10:  #FFFFFF1A;
   --color-black-100: #000000;
   --color-black-20:  #00000033;
   --color-black-15:  #00000026;
+  --color-black-12:  #0000001F;  /* pressed 오버레이 (§4-0) */
+  --color-black-06:  #0000000F;  /* hover 오버레이 (§4-0) */
 
   /* ── 공통 UI ── */
   --color-font-primary:   #111111;
@@ -101,6 +104,13 @@
   --color-status-error:   #E22A21;
   --color-status-warning: #E07306;
   --color-status-success: #00AA02;
+
+  /* ── 공통 컴포넌트 Primary · 상태 오버레이 (§4-0 · 피그마 공통 Design System deepblue/600 · states/Layer) ── */
+  --color-primary:    #013AAD;                /* 버튼 §7 · 서브탭 §8-4 · 텍스트필드 포커스 §10-1 · 체크박스/토글 §11 */
+  --state-hover:      var(--color-black-06);  /* hover - 배경 위 검정 6% 오버레이 */
+  --state-pressed:    var(--color-black-12);  /* pressed - 검정 12% 오버레이 */
+  --state-disabled:   var(--color-white-60);  /* disabled - 흰색 60% 오버레이 */
+  --opacity-disabled: 0.6;                    /* disabled 아이콘·텍스트 */
 
   /* ── 헤더 높이 ── */
   --header-height-mp:  104px;

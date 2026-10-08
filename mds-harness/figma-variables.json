@@ -2,7 +2,7 @@
   "meta": {
     "source": "design-v2.md -> mds-harness/tokens.css",
     "schemaVersion": "2026-09-29",
-    "generated": "2026-10-02",
+    "generated": "2026-10-08",
     "brands": [
       "mp",
       "hg",
@@ -25,9 +25,9 @@
   },
   "collections": [
     "color",
+    "misc",
     "layout",
     "typography",
-    "misc",
     "spacing",
     "radius",
     "elevation",
@@ -479,6 +479,13 @@
     },
     {
       "collection": "color",
+      "name": "color/white/60",
+      "css": "--color-white-60",
+      "type": "COLOR",
+      "value": "#FFFFFF99"
+    },
+    {
+      "collection": "color",
       "name": "color/white/40",
       "css": "--color-white-40",
       "type": "COLOR",
@@ -518,6 +525,20 @@
       "css": "--color-black-15",
       "type": "COLOR",
       "value": "#00000026"
+    },
+    {
+      "collection": "color",
+      "name": "color/black/12",
+      "css": "--color-black-12",
+      "type": "COLOR",
+      "value": "#0000001F"
+    },
+    {
+      "collection": "color",
+      "name": "color/black/06",
+      "css": "--color-black-06",
+      "type": "COLOR",
+      "value": "#0000000F"
     },
     {
       "collection": "color",
@@ -609,6 +630,44 @@
       "css": "--color-status-success",
       "type": "COLOR",
       "value": "#00AA02"
+    },
+    {
+      "collection": "color",
+      "name": "color/primary",
+      "css": "--color-primary",
+      "type": "COLOR",
+      "value": "#013AAD"
+    },
+    {
+      "collection": "misc",
+      "name": "state/hover",
+      "css": "--state-hover",
+      "type": "COLOR",
+      "value": "#0000000F",
+      "ref": "var(--color-black-06)"
+    },
+    {
+      "collection": "misc",
+      "name": "state/pressed",
+      "css": "--state-pressed",
+      "type": "COLOR",
+      "value": "#0000001F",
+      "ref": "var(--color-black-12)"
+    },
+    {
+      "collection": "misc",
+      "name": "state/disabled",
+      "css": "--state-disabled",
+      "type": "COLOR",
+      "value": "#FFFFFF99",
+      "ref": "var(--color-white-60)"
+    },
+    {
+      "collection": "misc",
+      "name": "opacity/disabled",
+      "css": "--opacity-disabled",
+      "type": "FLOAT",
+      "value": 0.6
     },
     {
       "collection": "layout",
